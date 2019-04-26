@@ -1,22 +1,29 @@
 {
-  "name": "respsprites",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
-    "debug": "^2.6.9",
-    "del": "^3.0.0",
-    "ejs": "^2.5.9",
-    "express": "~4.15.5",
-    "express-fileupload": "^0.4.0",
-    "gulp": "^3.9.1",
-    "gulp.spritesmith": "^6.9.0",
-    "merge-stream": "^1.0.1",
-    "morgan": "^1.9.0",
-    "serve-favicon": "^2.4.5"
-  }
+    "name": "respsprites",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "cookie-parser": "^1.4.3",
+        "debug": "^2.6.9",
+        "del": "^3.0.0",
+        "ejs": "^2.5.9",
+        "express": "~4.15.5",
+        "express-fileupload": "^0.4.0",
+        "gulp": "^3.9.1",
+        "gulp.spritesmith": "^6.9.0",
+        "merge-stream": "^1.0.1",
+        "morgan": "^1.9.0",
+        "serve-favicon": "^2.4.5"
+    },
+    "devDependencies": {
+        "gulp-autoprefixer": "^6.1.0",
+        "gulp-css": "^0.1.0",
+        "gulp-imagemin": "^5.0.3",
+        "gulp-uglify": "^3.0.2",
+        "nodemon": "^1.18.11"
+    }
 }
