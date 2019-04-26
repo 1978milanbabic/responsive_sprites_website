@@ -1,8 +1,3 @@
-node_modules/*
-*/node_modules/*
 node_modules/
-.vscode/*
-*/.vscode/*
-.vscode/
-gulpfile.js
-/nbproject/private/
+package-lock.json
+*.vscode/
