@@ -8,8 +8,7 @@ const upload = require('express-fileupload');
 
 
 //page controllers
-const index = require('./routes/index');
-const users = require('./routes/users');
+const home = require('./routes/home');
 const createsprites = require('./routes/createsprites');
 const created = require('./routes/spritescreated');
 
@@ -32,10 +31,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //page layouts
-app.use('/', index);
+app.use('/', home);
 app.use('/createsprites', createsprites);
 app.use('/spritescreated', created);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
