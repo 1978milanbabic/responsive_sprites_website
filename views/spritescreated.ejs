@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sprites Created</title>
+        <link rel='stylesheet' href='/stylesheets/spritescreated.css' />
+        <script src="./javascripts/jquery-2.2.4.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        
+        <div class="spimgcont">
+            <img src="<%= spritesrc %>" alt="" id="spriteimg">
+        </div>
+        
+        
+        <textarea class="jsonobj">
+            
+        </textarea>
+        
+        <script>
+            $.get("./createdsprites/stylesheets/sprite.json",
+            function(data) {
+                $("textarea").empty();
+                var cont = $(".jsonobj");
+                
+                var var_spritename = "pngs_data";
+                var cssclass = "sprites";
+                var picname = "sprite.png";
+                var img_source = "./img/" + picname;
+                
+                var TAB = "&#9;";
+                var NL = "\n";
+                
+                cont.append('var '+ var_spritename +' = {'+NL);
+                cont.append(''+ TAB + 'cssclass: "'+ cssclass +'",'+NL);
+                cont.append(''+ TAB + 'img_source: "'+ img_source +'",'+NL);
+                
+                
+                
+                var nmbofpics = Object.keys(data).length;
+                var picscount = 0, comm = ",";
+                var firstelem = true;
+                for(var key in data){
+                    picscount++;
+                    if(picscount==nmbofpics){
+                        comm = "";
+                    }
+                    
+                    if(firstelem){
+                        firstelem = false;
+                        
+                        var tot_width;
+                        var tot_height;
+                        
+                        cont.append(''+ TAB + 'total_width: ' + data[key]["total_width"] + ','+NL);
+                        cont.append(''+ TAB + 'total_height: ' + data[key]["total_height"] + ','+NL);
+                        
+                        cont.append(''+ TAB + 'imgs: {' +''+NL);
+                    }
+                    
+                    cont.append(''+ TAB+TAB + '"' + key + '": ' + '{'+NL);
+                    
+                        
+                    
+                    var comma_counts = 0, comma = ",";
+                    for(var key2 in data[key]){
+                        if(key2=="x" || key2=="y" || key2=="width" || key2=="height"){
+                            comma_counts++;
+                            if(comma_counts>3){
+                                comma = "";
+                            }
+                            cont.append(''+ TAB+TAB+TAB + key2 + ' : ' + data[key][key2] + comma +''+NL);
+                        }
+                    }
+                    cont.append(''+ TAB+TAB + '}' + comm +''+NL);
+                }
+                
+                cont.append(''+ TAB + '}' + comm +''+NL);
+                
+                cont.append('};');
+            });
+            
+            //back button to anull previous creations
+            (function(w, d) {
+                var targetLocation = function() {
+                    var url = './createsprites';
+                    w.history && w.history.pushState && w.history.pushState(null, null, w.location);
+                    w.addEventListener && w.addEventListener('popstate', function() {
+                        w.location = url
+                    }, !1)
+                };
+                (function() {
+                    if (w.addEventListener) {
+                        w.addEventListener('pageshow', function() {
+                            setTimeout(targetLocation, 0)
+                        }, !1)
+                    } else {
+                        setTimeout(targetLocation, 0)
+                    }
+                }())
+            }(window, document));
+        </script>
+    </body>
+</html>

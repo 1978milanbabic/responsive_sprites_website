@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('respsprites:server');
+var debug = require('debug')('resp-sprites-engine:server');
 var http = require('http');
 
 /**
