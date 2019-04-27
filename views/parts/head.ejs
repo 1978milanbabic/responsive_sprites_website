@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RSF - <%= title %></title>
+
+    <%
+        //import stylesheets
+        if (css.length > 0){
+            css.forEach(element => {
+    %>
+                <link rel="stylesheet" href="./stylesheets/<%= element %>">
+    <%
+            });
+        }
+    %>
+
+    <%
+        //import FE scripts
+        if (js.length > 0){
+            js.forEach(element => {
+    %>
+                <script type="text/javascript" src="./javascripts/<%= element %>"></script>
+    <%
+            });
+        }
+    %>
+    <!-- remove ajax loader after full page load -->
+    <script>(function($,w){$(w).load(function(){$(".loader").fadeOut(400)})})(jQuery, window)</script>
+</head>
+
+<body>
+
+    <div class="loader">
+        <div class="loader__middle">
+            <div class="loader__inner">
+                <img src="./images/ajax-loader.gif" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <%- include('./nav'); -%>
+
+        <main>
+            <div class="main__inner">

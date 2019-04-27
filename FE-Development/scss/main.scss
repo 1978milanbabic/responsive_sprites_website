@@ -1,0 +1,104 @@
+//********************** FONTS ******************************
+@import url('https://fonts.googleapis.com/css?family=Gugi|Josefin+Sans:600|Lato:400,400i,700');
+
+//**************** VARIABLES *******************
+
+@import 'variables/basic-vars';
+@import 'variables/colors';
+
+
+//********************** BASICS (ANULL BASIC DEFAULTS OF BROWSERS) *****************************
+
+body, html {
+    width: 100%;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    //all sizes reference!!! (thru rem)
+    font-size: setdefault-rem-px();
+    background-color: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+a {
+    color: initial;
+    text-decoration: none;
+}
+
+//no select, touch callout, drag, drop,... except text and upload drop space
+a, span, i, div:not(#upload), img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    user-drag: none;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+
+//**************** parts ***********************
+
+@import 'partials/loader';
+@import 'partials/nav';
+@import 'partials/footer';
+
+
+//**************** container ***********************
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: table;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+.inner {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+main {
+    width: 100%;
+    display: table-row;
+}
+
+.main__inner {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+//********************** MEDIA *********************
+
+@media screen and (max-width: 480px) {
+    body, html {
+        //  calc(MINFSpx + (MAXFS-MINFS)*(100vw-MINSZpx)/(MAXSZ-MINSZ))
+        //*MINFS - min font-size
+        //*MAXFS - max font-size
+        //*MINSZ - min screen size
+        //*MAXSZ - max screen size
+        font-size: calc(16*(100vw)/480);
+    }
+}

@@ -1,0 +1,33 @@
+#progress-wrp {
+  border: 1px solid #0099CC;
+  padding: 1px;
+  position: relative;
+  height: 30px;
+  border-radius: 3px;
+  margin: 10px;
+  text-align: left;
+  background: #fff;
+  -webkit-box-shadow: inset 1px 3px 6px rgba(0, 0, 0, 0.12);
+          box-shadow: inset 1px 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+#progress-wrp .progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0066ff), to(#b3d1ff));
+  background: linear-gradient(#0066ff, #b3d1ff);
+  width: 0;
+  -webkit-box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+          box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+#progress-wrp .status {
+  top: 3px;
+  left: 50%;
+  position: absolute;
+  display: inline-block;
+  color: #000000;
+}
+/*# sourceMappingURL=createsprites.css.map */

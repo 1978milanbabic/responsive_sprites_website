@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css?family=Gugi|Josefin+Sans:600|Lato:400,400i,700");
+body, html {
+  width: 100%;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+a, span, i, div:not(#upload), img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  user-drag: none;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+.loader {
+  position: fixed;
+  display: table;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+}
+
+.loader__middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.loader__inner {
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.loader__inner img {
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+  display: table-row;
+  height: 4.0625rem;
+  background-color: #ddd;
+  font-family: "Gugi", cursive;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), to(#f8f8f8));
+  background-image: linear-gradient(to bottom, #fff 0, #f8f8f8 100%);
+}
+
+nav .nav__cell {
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 0.125rem solid #eee;
+}
+
+nav .inner {
+  display: table;
+}
+
+nav .nav__left {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+nav .nav__left img {
+  width: 2.8125rem;
+  vertical-align: middle;
+}
+
+nav .nav__left ul {
+  list-style: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+nav .nav__left ul li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+nav .nav__left ul li a {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5rem 0.9375rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: transparent;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+nav .nav__left ul li a:hover {
+  background-color: #0680b1;
+  color: #fff;
+}
+
+nav .nav__right {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+}
+
+nav .nav__right a {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5rem 0.9375rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: transparent;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+nav .nav__right a:hover {
+  background-color: #06b106;
+  color: #fff;
+}
+
+@media screen and (max-width: 580px) {
+  nav {
+    height: 8.125rem;
+  }
+  nav .nav__right {
+    width: 9.375rem;
+  }
+  nav .nav__left ul li {
+    display: block;
+    width: 7.5rem;
+    text-align: left;
+    margin: 0.3125rem 0;
+  }
+  nav .nav__left ul li a {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+footer {
+  width: 100%;
+  display: table-row;
+  height: 1.875rem;
+  text-align: left;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d5eeff), color-stop(#e0faff), to(#d5eeff));
+  background-image: linear-gradient(to bottom, #d5eeff, #e0faff, #d5eeff);
+}
+
+footer .footer__inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+footer p {
+  margin-bottom: -0.1875rem;
+  font-size: 0.875rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  color: #333;
+}
+
+footer p a {
+  color: #1f1fad;
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: table;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.inner {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main {
+  width: 100%;
+  display: table-row;
+}
+
+.main__inner {
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 480px) {
+  body, html {
+    font-size: calc(16*(100vw)/480);
+  }
+}
+/*# sourceMappingURL=main.css.map */

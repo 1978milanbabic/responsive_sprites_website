@@ -16,7 +16,11 @@ router.get('/', (req, res, next) => {
     //del.sync(['public/createdsprites/stylesheets/**', '!public/createdsprites/stylesheets']);         //delete jsons - leave created jsons folder
 
     //render page
-    res.render('createsprites');
+    res.render('createsprites', {
+        title: 'Create Your Sprites',
+        css: ['main.css', 'createsprites.css'],
+        js: ["jquery-2.2.4.min.js"]
+    });
 });
 
 /* POST REQUEST FOR UPLOADING IMGS */

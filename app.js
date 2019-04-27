@@ -7,30 +7,27 @@ const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
 
 
-//page controllers
+//***************** page controllers (ROUTES) *****************
 const home = require('./routes/home');
 const createsprites = require('./routes/createsprites');
 const created = require('./routes/spritescreated');
 
 const app = express();
 
-//use uploader
-app.use(upload());
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//paths, parsers
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(upload());
 
-//page layouts
+//******************* page layouts (VIEWS) *********************
 app.use('/', home);
 app.use('/createsprites', createsprites);
 app.use('/spritescreated', created);

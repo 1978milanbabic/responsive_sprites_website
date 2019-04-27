@@ -1,0 +1,14 @@
+//fonts
+$jose: 'Josefin Sans', sans-serif;
+$gugi: 'Gugi', cursive;
+
+//sizes - px to rem
+$browser-default-size: 16 !default;
+
+@function setdefault-rem-px($size: $browser-default-size) {
+    @return #{$size}px;
+}
+
+@function rem($pixels, $context: $browser-default-size) {
+    @return #{$pixels/$context}rem;
+}

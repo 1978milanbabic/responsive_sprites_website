@@ -1,0 +1,27 @@
+footer {
+    width: 100%;
+    display: table-row;
+    height: rem(30);
+    text-align: left;
+    background-image: linear-gradient(to bottom,rgb(213, 238, 255) , rgb(224, 250, 255), rgb(213, 238, 255));
+
+    .footer__inner {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    p {
+        margin-bottom: rem(-3);
+        font-size: rem(14);
+        font-family: $jose;
+        font-weight: 600;
+        color: #333;
+
+        a {
+            color: rgb(31, 31, 173);
+            text-decoration: underline;
+        }
+    }
+
+
+}//footer

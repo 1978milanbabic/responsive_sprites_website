@@ -1,0 +1,106 @@
+nav {
+    width: 100%;
+    display: table-row;
+    height: rem(65);
+    background-color: #ddd;
+    font-family: $gugi;
+    background-image: linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
+
+    .nav__cell {
+        width: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        border-bottom: rem(2) solid #eee;
+    }
+
+    .inner {
+        display: table;
+    }
+
+    .nav__left {
+        display: table-cell;
+        vertical-align: middle;
+
+        img {
+            width: rem(45);
+            vertical-align: middle;
+        }
+
+        ul {
+            list-style: none;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                vertical-align: middle;
+
+                a {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding: rem(8) rem(15);
+                    font-size: rem(16);
+                    text-align: center;
+                    background-color: transparent;
+                    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+                }
+
+                a:hover {
+                    background-color: rgb(6, 128, 177);
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .nav__right {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
+
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            padding: rem(8) rem(15);
+            font-size: rem(16);
+            text-align: center;
+            background-color: transparent;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            background-color: rgb(6, 177, 6);
+            color: #fff;
+        }
+    }
+
+}//nav
+
+@media screen and (max-width: 580px) {
+    nav {
+        height: rem(130);
+
+        .nav__right {
+            width: rem(150);
+        }
+
+        .nav__left {
+            ul {
+                li {
+                    display: block;
+                    width: rem(120);
+                    text-align: left;
+                    margin: rem(5) 0;
+
+                    a {
+                        width: 100%;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
