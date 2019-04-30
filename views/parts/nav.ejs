@@ -11,10 +11,16 @@
                 </ul>
             </div>
 
-            <div class="nav__right">
-                <a class="lin" href="./signup">Sign up</a>
-                <a class="lin" href="./login">Login</a>
-            </div>
+            <div class="nav__right"></div>
+
+            <script>
+                (function ($) {
+                    var rightNav = $(".nav__right");
+                    navContent.forEach(function (el) {
+                        rightNav.append(el);
+                    });
+                })(jQuery);
+            </script>
 
         </div>
     </div>

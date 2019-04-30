@@ -10,28 +10,17 @@ const del = require('del');
 
 /* DISPLAY CREATESPRITES PAGE. */
 router.get('/', (req, res, next) => {
-    //need to login error page!
-    res.send('YOU NEED TO LOGIN FIRST!');
-});
+    //first delete previous uploads and creations
+    del.sync(['public/uploads/**', '!public/uploads']);         //delete pics - leave upload folder
+    //del.sync(['public/createdsprites/images/**', '!public/createdsprites/images']);         //delete sprites - leave created sprites folder - zajebava delete slike ponekad
+    //del.sync(['public/createdsprites/stylesheets/**', '!public/createdsprites/stylesheets']);         //delete jsons - leave created jsons folder
 
-router.post('/', (req, res, next) => {
-    //check for user login
-    if (!req.user) {
-        //need to login error page!
-        res.send('YOU NEED TO LOGIN FIRST!');
-    } else {
-        //first delete previous uploads and creations
-        del.sync(['public/uploads/**', '!public/uploads']);         //delete pics - leave upload folder
-        //del.sync(['public/createdsprites/images/**', '!public/createdsprites/images']);         //delete sprites - leave created sprites folder - zajebava delete slike ponekad
-        //del.sync(['public/createdsprites/stylesheets/**', '!public/createdsprites/stylesheets']);         //delete jsons - leave created jsons folder
-
-        //render page
-        res.render('createsprites', {
-            title: 'Create Your Sprites',
-            css: ['main.css', 'createsprites.css'],
-            js: ["jquery-2.2.4.min.js"]
-        });
-    }
+    //render page
+    res.render('createsprites', {
+        title: 'Create Your Sprites',
+        css: ['main.css', 'createsprites.css'],
+        js: ["main.js", "createsprites.js"]
+    });
 });
 
 /* POST REQUEST FOR UPLOADING IMGS */

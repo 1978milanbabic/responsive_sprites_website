@@ -1,16 +1,15 @@
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
 
 
-//***************** page controllers (ROUTES) *****************
+//*********************** PAGE ROUTES *************************
 const home = require('./routes/home');
-const createsprites = require('./routes/createsprites');
-const created = require('./routes/spritescreated');
+const create = require('./routes/createsprites');
+const done = require('./routes/spritescreated');
+const wronglog = require('./routes/errlogin');
 
 const app = express();
 
@@ -20,17 +19,16 @@ app.set('view engine', 'ejs');
 
 //paths, parsers
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(upload());
 
-//******************* page layouts (VIEWS) *********************
+//******************* page routing CONTROLERS ******************
 app.use('/', home);
-app.use('/createsprites', createsprites);
-app.use('/spritescreated', created);
+app.use('/createsprites', create);
+app.use('/spritescreated', done);
+app.use('/errlogin', wronglog);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

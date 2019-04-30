@@ -147,6 +147,12 @@ nav .nav__right a:hover {
   color: #fff;
 }
 
+nav .nav__right p {
+  display: inline-block;
+  color: #4eb8ff;
+  margin-right: 0.1875rem;
+}
+
 @media screen and (max-width: 580px) {
   nav {
     height: 8.125rem;

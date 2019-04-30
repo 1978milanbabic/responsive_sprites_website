@@ -4,9 +4,9 @@
 
     <h1>Welcome to Responsive Sprites Framework (RSF)<br> Creation Engine!</h1>
 
-    <h2>To continue please <a href="supform">signup</a> or <a href="sinform">login</a> if you already have an account.</h2>
+    <h2 class="notsigned">To continue please <a href="supform">signup</a> and/or <a href="sinform">login</a> if you already have an account.</h2>
     <div class="info">
-        <p>To use RSF you must signup first because we cannot provide you memory space on our server without signup.</p>
+        <p class="notsigned">To use RSF Creation Engine you must signup first - because we cannot provide you memory space on our server without signup.</p>
         <p>We dont use your personal data to spam you with commercials!</p>
         <p>This is absolutely free tool with no limitations!</p>
     </div>
@@ -23,5 +23,13 @@
     </div>
 
 </div>
+
+<script>
+    (function ($) {
+        if (userNameCookie) {
+            $(".notsigned").remove();
+        }
+    })(jQuery);
+</script>
 
 <%- include('./parts/foot'); -%>
