@@ -1,0 +1,21 @@
+@import 'variables/basic-vars';
+@import 'variables/colors';
+
+.errpage {
+    text-align: center;
+    color: $dark;
+
+    h1 {
+        font-size: rem(34);
+    }
+
+    h2 {
+        font-size: rem(34);
+    }
+
+    img {
+        width: 80%;
+        max-width: 390px;
+        margin: rem(40) 0;
+    }
+}

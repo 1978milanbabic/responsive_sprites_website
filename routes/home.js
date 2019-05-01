@@ -1,14 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* Home page */
-router.get('/', function (req, res, next) {
-    sess = req.session;
+router.get('/', (req, res, next) => {
     res.render('home', {
         title: 'Home',
         css: ['main.css', 'home.css'],
-        js: ["main.js", "home.js"],
-        sess: sess
+        js: ["main.js", "home.js"]
     });
 });
 

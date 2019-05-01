@@ -55,15 +55,16 @@ function checkLog() {
     //users login
 
     //development faze!!!!!!!!
+    // setCookie("user", "Milan", 0.5);
     // setCookie("user", "Milan", -0.5);
 
     //prolong cookie user logged in
     function prolongCookie() {
-        // setCookie("user", userNameCookie, -0.5); //prolong login for half hour
+        setCookie("user", userNameCookie, 0.5); //prolong login for half hour
     }
 
     //user logged? - virtual DOM for navigation
-    window.navContent = [];
+    window.navContent = [];     //global
     if (checkLog()) {
         userNameCookie = getCookie("user");
         //welcome username
@@ -74,9 +75,9 @@ function checkLog() {
         var soutBtn = document.createElement("A");
         soutBtn.className = "link";
         soutBtn.href = "sout";
-        soutBtn.innerHTML = "Sign out";
+        soutBtn.innerHTML = "Log out";
         navContent.push(soutBtn);
-        //prolong cookie
+        //prolong cookie (EACH TIME ANY PAGE LOADS WITH ALREADY LOGGED IN USER)
         prolongCookie();
     } else {
         userNameCookie = false;
@@ -95,7 +96,18 @@ function checkLog() {
     }
 
     $(win).load(function () {
+        //remove loader when all loaded UX/UI
         $(".loader").fadeOut(400);
+        var loginLinks = $("a[href='sinform']");
+        var signUpLinks = $("a[href='supform']");
+        var logOutLinks = $("a[href='sout']");
+
+        //---- sign up ----
+
+        //---- login ----
+
+        //---- logout ----
+
     });
 })(jQuery, window)
 
