@@ -10,4 +10,20 @@ router.get('/', (req, res, next) => {
     });
 });
 
+/* mailer (sign up) controler */
+router.post('/mail', (req, res, next) => {
+    let reqUn = req.body.un;
+    let reqPass = req.body.pass;
+
+    res.send([reqUn, reqPass]);
+});
+
+/* login controler */
+router.post('/login', (req, res, next) => {
+    let reqUn = req.body.un;
+    let reqPass = req.body.pass;
+
+    res.send([reqUn, reqPass]);
+});
+
 module.exports = router;

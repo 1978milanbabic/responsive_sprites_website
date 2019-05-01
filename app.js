@@ -3,6 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
+const nodemailer = require('nodemailer');
 
 
 //*********************** PAGE ROUTES *************************
@@ -25,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(upload());
 
 //******************* page routing CONTROLERS ******************
-app.use('/', home);
+app.use('/', home);                     //also login and signup controler
 app.use('/createsprites', create);
 app.use('/spritescreated', done);
 app.use('/errlogin', wronglog);

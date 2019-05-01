@@ -98,15 +98,108 @@ function checkLog() {
     $(win).load(function () {
         //remove loader when all loaded UX/UI
         $(".loader").fadeOut(400);
-        var loginLinks = $("a[href='sinform']");
-        var signUpLinks = $("a[href='supform']");
-        var logOutLinks = $("a[href='sout']");
 
-        //---- sign up ----
+        var $loginLinks = $("a[href='sinform']");
+        var $signUpLinks = $("a[href='supform']");
+        var $logOutLinks = $("a[href='sout']");
 
-        //---- login ----
+        var getUrl = window.location;
+        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
 
-        //---- logout ----
+        //-------- sign up --------
+
+        var $suOuter = $(".signup");
+        var $suform = $("form.signup__inner");
+        //show form
+        $signUpLinks.click(function (event) {
+            event.preventDefault();
+            $suOuter.css("display", "table");
+        });
+
+        //hide/no propagation
+        $suform.click(function (event) {
+            event.stopPropagation();
+        });
+        $suOuter.click(function (event) {
+            $suOuter.fadeOut(300);
+        })
+
+        //sign up request
+        $suform.submit(function (event) {
+            event.preventDefault();
+            var un = $suform.find("input[name='email']").val();
+            var pass = $suform.find("input[name='pass']").val();
+            var repass = $suform.find("input[name='repass']").val();
+            if (!un || !pass || !repass) {
+                alert("Empty form doesnt mean much to us :(");
+            } else {
+                un = un.trim();
+                if (pass != repass) {
+                    alert("Try to repeat the same password.");
+                } else {
+                    $.post(baseUrl + "mail", {
+                        un: un,
+                        pass: pass
+                    }, function () {
+                        console.log('signup request sent');
+                    }).done(function (data) {
+                        console.log(data);
+                    });
+                }
+            }
+        });
+
+
+        //-------- login --------
+
+        var $siOuter = $(".signin");
+        var $siform = $("form.signin__inner");
+        //show form
+        $loginLinks.click(function (event) {
+            event.preventDefault();
+            $siOuter.css("display", "table");
+        });
+
+        //hide/no propagation
+        $siform.click(function (event) {
+            event.stopPropagation();
+        });
+        $siOuter.click(function (event) {
+            $siOuter.fadeOut(300);
+        })
+
+        //sign in request
+        $siform.submit(function (event) {
+            event.preventDefault();
+            var un = $siform.find("input[name='email']").val();
+            var pass = $siform.find("input[name='pass']").val();
+            if (!un || !pass) {
+                alert("Empty form doesnt mean much to us :(");
+            } else {
+                un = un.trim();
+                $.post(baseUrl + "login", {
+                    un: un,
+                    pass: pass
+                }, function () {
+                    console.log('login request sent');
+                }).done(function (data) {
+                    console.log(data);
+                });
+            }
+        });
+
+
+        //-------- logout --------
+        $logOutLinks.click(function (event) {
+            event.preventDefault();
+            //delete cookie and user data
+            setCookie("user", "deleted", -1);
+            userNameCookie = false;
+
+            //location reload (logout)
+            win.location.reload();
+        });
+
 
     });
 })(jQuery, window)
