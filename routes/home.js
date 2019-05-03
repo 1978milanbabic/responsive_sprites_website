@@ -23,7 +23,7 @@ router.post('/mail', (req, res, next) => {
 
     //find in db if already exists
     User.find({ username: "popo@yahoo.com" }).then((res) => {
-        res.send("found", res);
+        res.send(["found", res]);
     });
     // .then((users) => {
     //     if (users.username == user.username) {
