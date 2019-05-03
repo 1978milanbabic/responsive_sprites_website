@@ -23,7 +23,7 @@ router.post('/mail', (req, res, next) => {
 
     //find in db if already exists
     let query = un;
-    User.find({})
+    User.find({ un })
         .then((users) => {
             res.send(users);
         });
