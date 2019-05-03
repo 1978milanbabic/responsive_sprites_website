@@ -22,10 +22,15 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    let query = un;
     User.find({ username: un })
         .then((users) => {
-            res.send(users);
+            if (users) {
+                //record already exists
+                res.send('Already there!');
+            } else {
+                //create a new record
+
+            }
         });
 
     // user.save()
