@@ -21,11 +21,18 @@ router.post('/mail', (req, res, next) => {
     user.password = pass;
     user.confirmationData = "test";
 
-    user.save()
-        .then(() => {
-            console.log('Instance Saved to mongoDB!');
-        })
-        .catch(next);
+    //find in db if already exists
+    let query = un;
+    User.find({})
+        .then((users) => {
+            res.send(users);
+        });
+
+    // user.save()
+    //     .then(() => {
+    //         console.log('Instance Saved to mongoDB!');
+    //     })
+    //     .catch(next);
 
     //send confirmation mail
 
