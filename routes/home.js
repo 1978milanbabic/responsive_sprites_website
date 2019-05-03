@@ -22,24 +22,30 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    User.find({ username: un })
-        .then((users) => {
-            if (users) {
-                //record already exists
-                res.send('Already there!');
-            } else {
-                //create a new record
-                user.save()
-                    .then(() => {
-                        console.log('Instance Saved to mongoDB!');
-                    })
-                    .catch(next);
-
-                //send confirmation mail
+    User.find({ username: un }).toArray((err, result) => {
+        if (err) {
+            throw err;
+        } else {
+            res.send(result);
+        }
+    });
+    // .then((users) => {
+    //     if (users.username == user.username) {
+    //         //record already exists
+    //         res.send('Already there!');
+    //     } else {
 
 
-            }
-        });
+    //     }
+    // });
+    //create a new record
+    // user.save()
+    // .then(() => {
+    //     console.log('Instance Saved to mongoDB!');
+    // })
+    // .catch(next);
+
+    // //send confirmation mail
 
 });
 
