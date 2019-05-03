@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
 
 
 //*********************** PAGE ROUTES *************************
@@ -24,6 +25,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(upload());
+
+//connect to mogoDB
+mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });
+// mongoose.Promise = global.Promise; //due to deprecation
+
 
 //******************* page routing CONTROLERS ******************
 app.use('/', home);                     //also login and signup controler

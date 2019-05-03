@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+//db model
+const User = require('../models/users');
 
 /* Home page */
 router.get('/', (req, res, next) => {
@@ -12,18 +14,30 @@ router.get('/', (req, res, next) => {
 
 /* mailer (sign up) controler */
 router.post('/mail', (req, res, next) => {
-    let reqUn = req.body.un;
-    let reqPass = req.body.pass;
+    let { un, pass } = { ...req.body };
 
-    res.send([reqUn, reqPass]);
+    let user = new User();
+    user.username = un;
+    user.password = pass;
+    user.confirmationData = "test";
+
+    user.save()
+        .then(() => {
+            console.log('Instance Saved to mongoDB!');
+        })
+        .catch(next);
+
+    //send confirmation mail
+
+    // res.send([un, pass]);
 });
 
 /* login controler */
 router.post('/login', (req, res, next) => {
-    let reqUn = req.body.un;
-    let reqPass = req.body.pass;
+    let { un, pass } = { ...req.body };
 
-    res.send([reqUn, reqPass]);
+
+    res.send([un, pass]);
 });
 
 module.exports = router;
