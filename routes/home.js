@@ -29,7 +29,7 @@ router.post('/mail', (req, res, next) => {
         let query = { username: username };
         dbo.collection("userlist").find(query).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            res.send(result);
             db.close();
         });
     });
