@@ -27,7 +27,8 @@ router.post('/mail', (req, res, next) => {
     user.save()
         .then(result => {
             res.send(result);
-        });
+        })
+        .catch(next);
     // .then((users) => {
     //     if (users.username == user.username) {
     //         //record already exists
