@@ -28,8 +28,7 @@ app.use(upload());
 
 //connect to mogoDB
 mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });
-// mongoose.Promise = global.Promise; //due to deprecation
-
+//newUrlParser - due to deprecation
 
 //******************* page routing CONTROLERS ******************
 app.use('/', home);                     //also login and signup controler

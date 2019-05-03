@@ -29,19 +29,18 @@ router.post('/mail', (req, res, next) => {
                 res.send('Already there!');
             } else {
                 //create a new record
+                user.save()
+                    .then(() => {
+                        console.log('Instance Saved to mongoDB!');
+                    })
+                    .catch(next);
+
+                //send confirmation mail
+
 
             }
         });
 
-    // user.save()
-    //     .then(() => {
-    //         console.log('Instance Saved to mongoDB!');
-    //     })
-    //     .catch(next);
-
-    //send confirmation mail
-
-    // res.send([un, pass]);
 });
 
 /* login controler */
