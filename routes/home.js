@@ -23,11 +23,11 @@ router.post('/mail', (req, res, next) => {
 
     //find in db if already exists
     User.find({ username: un }).toArray((err, result) => {
-        if (err) {
-            throw err;
-        } else {
-            res.send(result);
-        }
+        // if (err) {
+        //     throw err;
+        // } else {
+        res.send(result);
+        // }
     });
     // .then((users) => {
     //     if (users.username == user.username) {
