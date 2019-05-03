@@ -24,11 +24,18 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    user.save()
-        .then(result => {
-            res.send(result);
-        })
-        .catch(next);
+
+    //this works!!!
+    // user.save()
+    //     .then(result => {
+    //         res.send(result);
+    //     })
+    //     .catch(next);
+
+    User.find().then(doc => {
+        res.send(doc);
+    });
+
     // .then((users) => {
     //     if (users.username == user.username) {
     //         //record already exists
