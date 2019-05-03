@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 //db model
+const mongoose = require('mongoose');
 const User = require('../models/users');
+
 
 /* Home page */
 router.get('/', (req, res, next) => {
@@ -22,8 +24,14 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    User.find({ username: "popo@yahoo.com" }).then((res) => {
-        res.send(["found", res]);
+    mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true }, (err, db) => {
+        const dbo = db.db("userlist");
+        let query = { username: username };
+        dbo.collection("userlist").find(query).toArray(function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            db.close();
+        });
     });
     // .then((users) => {
     //     if (users.username == user.username) {
