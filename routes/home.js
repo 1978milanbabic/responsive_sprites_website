@@ -22,7 +22,7 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    User.find().then((res) => {
+    User.find({ username: "popo@yahoo.com" }).then((res) => {
         res.send("found", res);
     });
     // .then((users) => {
