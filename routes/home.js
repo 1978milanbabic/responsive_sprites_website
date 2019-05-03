@@ -22,7 +22,7 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    User.find().toArray((err, result) => {
+    User.toArray((result) => {
         // if (err) {
         //     throw err;
         // } else {
