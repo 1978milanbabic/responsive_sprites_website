@@ -24,15 +24,10 @@ router.post('/mail', (req, res, next) => {
     user.confirmationData = "test";
 
     //find in db if already exists
-    mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true }, (err, db) => {
-        const dbo = db.db("userlist");
-        let query = { username: username };
-        dbo.collection("userlist").find(query).toArray(function (err, result) {
-            if (err) throw err;
+    user.save()
+        .then(result => {
             res.send(result);
-            db.close();
         });
-    });
     // .then((users) => {
     //     if (users.username == user.username) {
     //         //record already exists
