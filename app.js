@@ -16,6 +16,10 @@ const wronglog = require('./routes/errlogin');
 const signup = require('./routes/signup');
 const signin = require('./routes/signin');
 
+//development/testing route
+const emptyDB = require('./routes/emptydb');
+
+
 const app = express();
 
 // view engine setup
@@ -42,6 +46,10 @@ app.use('/errlogin', wronglog);
 //virtual routes controlers
 app.use("/mail", signup);
 app.use("/login", signin);
+
+//development/testing controler
+app.use("/emptydatabase", emptyDB);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
