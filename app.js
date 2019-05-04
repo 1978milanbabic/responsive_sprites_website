@@ -3,15 +3,18 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
-const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 
-//*********************** PAGE ROUTES *************************
+//*********************** PAGE ROUTES HANDLERS *********************
+//physical routes
 const home = require('./routes/home');
 const create = require('./routes/createsprites');
 const done = require('./routes/spritescreated');
 const wronglog = require('./routes/errlogin');
+//virtual routes/request handlers
+const signup = require('./routes/signup');
+const signin = require('./routes/signin');
 
 const app = express();
 
@@ -30,11 +33,15 @@ app.use(upload());
 mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });
 //newUrlParser - due to deprecation
 
-//******************* page routing CONTROLERS ******************
-app.use('/', home);                     //also login and signup controler
+//******************* PAGE ROUTES CONTROLERS/ACTIVATE ******************
+//physical routes controlers
+app.use('/', home);
 app.use('/createsprites', create);
 app.use('/spritescreated', done);
 app.use('/errlogin', wronglog);
+//virtual routes controlers
+app.use("/mail", signup);
+app.use("/login", signin);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
