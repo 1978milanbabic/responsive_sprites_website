@@ -12,7 +12,7 @@
         if (css.length > 0){
             css.forEach(element => {
     %>
-                <link rel="stylesheet" href="./stylesheets/<%= element %>">
+                <link rel="stylesheet" href="/stylesheets/<%= element %>">
     <%
             });
         }
@@ -23,7 +23,7 @@
         if (js.length > 0){
             js.forEach(element => {
     %>
-                <script type="text/javascript" src="./javascripts/<%= element %>"></script>
+                <script type="text/javascript" src="/javascripts/<%= element %>"></script>
     <%
             });
         }
@@ -35,7 +35,7 @@
     <div class="loader">
         <div class="loader__middle">
             <div class="loader__inner">
-                <img src="./images/ajax-loader.gif" alt="">
+                <img src="/images/ajax-loader.gif" alt="">
             </div>
         </div>
     </div>
