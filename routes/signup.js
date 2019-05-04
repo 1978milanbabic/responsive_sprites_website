@@ -19,8 +19,8 @@ const makeid = (len) => {
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: '1978milan.babic@gmail.com',
-        pass: 'Hotride2'
+        user: 'responsive.sprites@gmail.com',
+        pass: 'respsprites1'
     }
 });
 
@@ -54,7 +54,7 @@ router.post('/', (req, res, next) => {
                             from: '1978milan.babic@gmail.com',
                             to: un,
                             subject: 'RSF confirmation',
-                            text: 'Confirm your account by clicking on following link:\n http://' + randConf
+                            text: 'Please confirm your account verification by clicking on following link:\n http://responsive-sprites.com/confirm/' + randConf
                         };
                         transporter.sendMail(mailOptions, (error, info) => {
                             if (error) {

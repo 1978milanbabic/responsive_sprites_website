@@ -54,7 +54,7 @@ function checkLog() {
 (function ($, win) {
     //users login
 
-    //development faze!!!!!!!!
+    //development phase!!!!!!!!
     // setCookie("user", "Milan", 0.5);
     // setCookie("user", "Milan", -0.5);
 

@@ -9,10 +9,6 @@ router.post('/', (req, res, next) => {
     //destructuring post vars
     let { un, pass } = { ...req.body };
 
-    //constructing DB model
-    // let user = new User();
-    // user.username = un;
-    // user.password = pass;
 
     //find in DB
     User.find({ username: un, password: pass })

@@ -5,7 +5,7 @@ const User = require('../models/users');
 
 
 router.get('/', (req, res, next) => {
-    User.find().remove()
+    User.find().deleteMany()
         .then(() => {
             res.send("all removed");
         });
