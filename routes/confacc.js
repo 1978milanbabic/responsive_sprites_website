@@ -9,3 +9,5 @@ router.get('/:data', (req, res, next) => {
 
     res.send(reqData);
 });
+
+module.exports = router;
