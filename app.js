@@ -7,15 +7,16 @@ const mongoose = require('mongoose');
 
 
 //*********************** PAGE ROUTES HANDLERS *********************
-//physical routes
+//physical routes handlers
 const home = require('./routes/home');
 const create = require('./routes/createsprites');
 const done = require('./routes/spritescreated');
 const wronglog = require('./routes/errlogin');
+const confAcc = require('./routes/confacc');
 //virtual routes/request handlers
 const signup = require('./routes/signup');
 const signin = require('./routes/signin');
-//development/testing route
+//development/testing route handler
 const emptyDB = require('./routes/emptydb');
 
 
@@ -42,6 +43,7 @@ app.use('/', home);
 app.use('/createsprites', create);
 app.use('/spritescreated', done);
 app.use('/errlogin', wronglog);
+app.use('/confirm', confAcc);
 //virtual routes controlers
 app.use("/mail", signup);
 app.use("/login", signin);
