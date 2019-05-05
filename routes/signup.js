@@ -74,7 +74,7 @@ router.post('/', (req, res, next) => {
                                 console.log('Email sent: ' + info.response);
                                 res.send("Please check out your email to verify your account!");
                                 //create folder for future user files storage
-                                checkDirectorySync("./logs");
+                                checkDirectorySync("/exampledir");
                             }
                         });
                     })
