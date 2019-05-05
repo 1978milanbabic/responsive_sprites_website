@@ -137,13 +137,15 @@ function checkLog() {
                 if (pass != repass) {
                     alert("Try to repeat the same password.");
                 } else {
+                    //hide form
+                    $suOuter.hide();
+
                     $.post(baseUrl + "mail", {
                         un: un,
                         pass: pass
                     }, function () {
                         console.log('signup request sent');
                     }).done(function (data) {
-                        $suOuter.hide();
                         alert(data);
                         win.location.reload();
                     });

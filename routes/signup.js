@@ -24,6 +24,15 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+//directory creating
+const checkDirectorySync = directory => {
+    try {
+        fs.statSync(directory);
+    } catch (e) {
+        fs.mkdirSync(directory);
+    }
+}
+
 
 /* mailer (sign up) controler */
 router.post('/', (req, res, next) => {
@@ -64,6 +73,8 @@ router.post('/', (req, res, next) => {
                             } else {
                                 console.log('Email sent: ' + info.response);
                                 res.send("Please check out your email to verify your account!");
+                                //create folder for future user files storage
+                                checkDirectorySync("./logs");
                             }
                         });
                     })
