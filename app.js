@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 
 //*********************** PAGE ROUTES CONTROLERS *********************
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(upload());
+app.use(cookieParser());
 
 //connect to mogoDB
 mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });

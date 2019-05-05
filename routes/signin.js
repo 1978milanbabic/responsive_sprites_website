@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
                     res.send("Your account is not confirmed!");
                 } else {
                     //log in!!!!
-                    res.send("logged IN!!!!")
+                    res.cookie('user', un).send("signed");
                 }
             }
         })

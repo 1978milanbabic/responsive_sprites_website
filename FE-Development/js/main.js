@@ -64,12 +64,12 @@ function checkLog() {
     }
 
     //user logged? - virtual DOM for navigation
-    window.navContent = [];     //global
+    win.navContent = [];     //global
     if (checkLog()) {
         userNameCookie = getCookie("user");
         //welcome username
         var welcomeUser = document.createElement("P");
-        welcomeUser.innerHTML = userNameCookie;
+        welcomeUser.innerHTML = unescape(userNameCookie);
         navContent.push(welcomeUser);
         //sign out
         var soutBtn = document.createElement("A");
@@ -145,6 +145,7 @@ function checkLog() {
                     }).done(function (data) {
                         $suOuter.hide();
                         alert(data);
+                        win.location.reload();
                     });
                 }
             }
@@ -184,7 +185,8 @@ function checkLog() {
                 }, function () {
                     console.log('login request sent');
                 }).done(function (data) {
-                    console.log(data);
+                    $siOuter.hide();
+                    data != "signed" ? alert(data) : win.location = "/";
                 });
             }
         });
