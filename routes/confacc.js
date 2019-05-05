@@ -3,6 +3,13 @@ const router = express.Router();
 //db model
 const User = require('../models/users');
 
+//show TY for confirming acc page
+const renderPage = response => response.render('confirmacc', {
+    title: 'Thank you for confirming your account',
+    css: ['main.css', 'confirm.css'],
+    js: ["main.js"]
+});
+
 
 router.get('/:data', (req, res, next) => {
     //request params
@@ -14,24 +21,15 @@ router.get('/:data', (req, res, next) => {
                 let alreadyConfirmed = result.active;
 
                 if (alreadyConfirmed) {
-                    //render "you have already confirmed your acc" page
-                    res.render('confirmacc', {
-                        title: 'Thank you, but you have already confirmed your account',
-                        css: ['main.css', 'confirm.css'],
-                        js: ["main.js"],
-                        heading: "Thank you, but you have already confirmed your account!"
-                    });
+                    //already confirmed account / show TY
+                    renderPage(res);
                 } else {
                     result.active = true;
-                    result.save()   //save change to DB
+                    //save change to DB
+                    result.save()
                         .then(() => {
-                            //render "confirmation success" page
-                            res.render('confirmacc', {
-                                title: 'Thank you for confirming your account',
-                                css: ['main.css', 'confirm.css'],
-                                js: ["main.js"],
-                                heading: "Thank you for confirming your account!"
-                            });
+                            //confirmation success / show TY
+                            renderPage(res);
                         })
                         .catch(next);   //err handler
                 }
