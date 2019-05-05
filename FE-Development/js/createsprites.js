@@ -18,9 +18,11 @@
                 console.log("post sent");
             }).done(function (data) {
                 if (data != "ok") {
-                    alert(data);
+                    console.log(data);
                 } else {
-                    window.location = "./spritescreated";
+                    setTimeout(function () {
+                        window.location = "./spritescreated";
+                    }, 1000);
                 }
             });
         }
@@ -30,12 +32,14 @@
             callSprites();
         });
 
-        //first anull input val for BB
+        //first anull input val
         $("#uploadfiles").val("").change();
 
         var Upload = function (file) {
             this.file = file;
         };
+
+        var picNmb = 0;
 
         Upload.prototype.getType = function () {
             return this.file.type;
@@ -65,19 +69,35 @@
                     return myXhr;
                 },
                 success: function (data) {
-                    // your callback here
-                    console.log("Upload Complete!");
+                    // add uploaded pic to display
+                    var pic = unescape(that.getName()).trim();
+
+                    var $pic = $("<img>", {
+                        attr: {
+                            alt: "",
+                            src: './uploads/' + unescape(userNameCookie) + '/uploads/' + pic
+                        }
+                    }).load(function () {
+                        //hide loader!
+                        console.log('Pic uploaded');
+                        $(this).parent().find(".loading").fadeOut(300);
+                    });
+
+                    $(".upcont" + picNmb + " .imgcont").append($pic);
+
+                    console.log("Pic upload Complete!", picNmb, data);
+                    picNmb++;
                 },
                 error: function (error) {
                     // handle error
-                    alert(error);
+                    console.log(error);
                 },
                 async: true,
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
-                timeout: 60000
+                timeout: 6000
             }).done(function (resp) {
                 console.log(resp);
             });
@@ -98,16 +118,15 @@
 
 
         $("#upload input").on("change", function (e) {
-            //var file = $(this)[0].files[0];
-            //var upload = new Upload(file);
+            //reset progress to 0
+            $("#progress-wrp .progress-bar").remove();
+            $("#progress-wrp").append('<div class="progress-bar"></div>');
+            $("#progress-wrp .status").text("0%");
 
             //izmena
             var files = $(this)[0].files;
             for (var key in files) {
                 var upload = new Upload(files[key]);
-
-
-
 
                 upload.doUpload();
             }
@@ -115,17 +134,30 @@
 
 
 
-            // maby check size or type here with upload.getSize() and upload.getType()
+            // maybe check size or type here with upload.getSize() and upload.getType()
 
 
             // execute upload
             //upload.doUpload();
 
+
             //files list
+            var fileUpdateStart = picNmb;
             var inputF = document.getElementById("uploadfiles");
-            for (var i = 0; i < inputF.files.length; i++) {
-                $("#upload").append('<p>' + inputF.files[i].name + '</p>');
-                $("#upload").append('<p>' + inputF.files[i].type + '</p>');
+            for (var i = picNmb; i < inputF.files.length + fileUpdateStart; i++) {
+
+                var lisrNmb = i - picNmb;
+
+                var $uploadedPicContainer = $("<div>", {
+                    addClass: "upcont upcont" + i
+                });
+
+                $uploadedPicContainer.append('<div class="imgcont"><div class="loading"><img src="./images/ajax-loader.gif" alt=""></div></div>');
+                $uploadedPicContainer.append('<p>' + inputF.files[lisrNmb].name + '</p>');
+                $uploadedPicContainer.append('<p>' + inputF.files[lisrNmb].type + '</p>');
+
+                $("#uploaded").append($uploadedPicContainer);
+
             }
 
         });

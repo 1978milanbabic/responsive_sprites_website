@@ -14,11 +14,17 @@ const getUser = request => request.cookies.user;
 router.get('/', (req, res, next) => {
     //user loged in
     let user = getUser(req);
-    let spritesPath = "./public/uploads/" + user + "/createdsprites/";
+    let spritesPath = "./public/uploads/" + user + "/createdsprites/**/*";
     let notSpritesPath = "!public/uploads/" + user + "/createdsprites";
 
-    //first delete previous creations
-    del.sync([spritesPath + '**/*', notSpritesPath]);         //delete sprites - leave sprites folder
+    //first delete previous creations - problem sometimes!!! - (try/catch resolved this)
+    try {
+        //delete sprites - leave sprites folder
+        del.sync([spritesPath, notSpritesPath]);
+    }
+    catch (err) {
+        console.log(err);
+    }
 
     //render page
     res.render('createsprites', {

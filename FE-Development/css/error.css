@@ -5,10 +5,12 @@
 
 .errpage h1 {
   font-size: 2.125rem;
+  word-break: break-all;
 }
 
 .errpage h2 {
   font-size: 2.125rem;
+  word-break: break-all;
 }
 
 .errpage img {

@@ -9,12 +9,19 @@ const getUser = request => request.cookies.user;
 router.get('/', (req, res, next) => {
     //user loged in
     let user = getUser(req);
-    let uploadPath = "./public/uploads/" + user + "/uploads/";
+    let uploadPath = "./public/uploads/" + user + "/uploads/**/*";
     let notUploadPath = "!public/uploads/" + user + "/uploads";
+
     let spritesPathFrontEnd = "./uploads/" + user + "/createdsprites/";
 
     //first delete previous uploads
-    del.sync([uploadPath + '**/*', notUploadPath]);         //delete uploads - leave upload folder
+    try {
+        //delete uploads - leave upload folder
+        del.sync([uploadPath, notUploadPath]);
+    }
+    catch (err) {
+        console.log(err);
+    }
 
     res.render('spritescreated', {
         title: 'Sprites Created!',

@@ -1,12 +1,16 @@
 <%- include('./parts/head'); -%>
 
-        <div class="inner">
+        <div class="inner createsprites">
 
-            <h1>Create Your Sprites Image for RespSprites Framework</h1>
+            <h1>Create Your Sprites Image for Responsive Sprites Framework</h1>
+
+            <p class="step">STEP 1: &emsp;upload images</p>
 
             <div id="upload">
-                <h1>Drag and Drop Your Images here or Click to Upload Manually</h1>
-                <input type="file" multiple="" id="uploadfiles" name="files[]">
+                <div class="upload__inner">
+                    <h2>Drag and Drop Your Images HERE or Click to Upload Manually</h2>
+                    <input type="file" multiple="" id="uploadfiles" name="files[]">
+                </div>
             </div>
 
             <div id="progress-wrp">
@@ -14,7 +18,37 @@
                 <div class="status">0%</div>
             </div>
 
-            <button id="uploadbtn" type="button">SPRITE ME!</button>
+            <div id="uploaded">
+                <h3>*** Note that picture names will be part of class names of your sprites.<br> Try to keep them as simple as possible and avoid duplicating names.</h3>
+            </div>
+
+            <p class="step">STEP 2: &emsp;adjust merging</p>
+
+            <div id="opts">
+
+                <p>Choose images type:</p>
+                <br>
+                <input type="radio" name="imgtype" value="jpg" id="inimgjpg">
+                <label for="inimgjpg">JPG</label>
+                <br>
+                <input type="radio" name="imgtype" value="png" id="inimgpng">
+                <label for="inimgpng">PNG</label>
+
+                <p>Choose background color RGB (effective only if JPG - ignored if PNG):</p>
+                <br>
+                <input type="text" name="bgcolor" value="#fff">
+
+                <p>Choose padding:</p>
+                <br>
+                <input type="number" name="padding" value="1">
+
+
+            </div>
+
+            <div class="submitcreate">
+                <p class="step">LAST STEP: &emsp;create sprites</p>
+                <button id="uploadbtn" type="button">SPRITE ME!</button>
+            </div>
 
         </div>
 
