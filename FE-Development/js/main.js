@@ -143,7 +143,8 @@ function checkLog() {
                     }, function () {
                         console.log('signup request sent');
                     }).done(function (data) {
-                        console.log(data);
+                        $suOuter.hide();
+                        alert(data);
                     });
                 }
             }

@@ -1,0 +1,15 @@
+.confirm {
+  text-align: center;
+  color: #333;
+}
+
+.confirm h1 {
+  font-size: 2rem;
+  padding-bottom: 0.9375rem;
+}
+
+.confirm p {
+  font-size: 1.5rem;
+  color: #4eb8ff;
+}
+/*# sourceMappingURL=confirm.css.map */

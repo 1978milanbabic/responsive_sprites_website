@@ -48,10 +48,11 @@ router.post('/', (req, res, next) => {
                 //save new instance
                 user.save()
                     .then(() => {
+                        //development debug point
                         console.log('Instance Saved to mongoDB!', un);
                         // next step => send an email to confirm registration
                         const mailOptions = {
-                            from: '1978milan.babic@gmail.com',
+                            from: 'responsive.sprites@gmail.com',
                             to: un,
                             subject: 'RSF confirmation',
                             text: 'Please confirm your account verification by clicking on following link:\n http://responsive-sprites.com/confirm/' + randConf
@@ -59,8 +60,10 @@ router.post('/', (req, res, next) => {
                         transporter.sendMail(mailOptions, (error, info) => {
                             if (error) {
                                 console.log(error);
+                                res.send("Sending your confirmation mail failed!");
                             } else {
                                 console.log('Email sent: ' + info.response);
+                                res.send("Please check out your email to verify your account!");
                             }
                         });
                     })

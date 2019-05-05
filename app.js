@@ -6,17 +6,17 @@ const upload = require('express-fileupload');
 const mongoose = require('mongoose');
 
 
-//*********************** PAGE ROUTES HANDLERS *********************
-//physical routes handlers
+//*********************** PAGE ROUTES CONTROLERS *********************
+//physical routes controlers
 const home = require('./routes/home');
 const create = require('./routes/createsprites');
 const done = require('./routes/spritescreated');
 const wronglog = require('./routes/errlogin');
 const confAcc = require('./routes/confacc');
-//virtual routes/request handlers
+//virtual routes/request controlers
 const signup = require('./routes/signup');
 const signin = require('./routes/signin');
-//development/testing route handler
+//development/testing route controler
 const emptyDB = require('./routes/emptydb');
 
 
@@ -35,19 +35,19 @@ app.use(upload());
 
 //connect to mogoDB
 mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });
-//newUrlParser - due to deprecation
 
-//******************* PAGE ROUTES CONTROLERS/ACTIVATE ******************
-//physical routes controlers
+
+//******************* PAGE ROUTES DEFINITIONS ******************
+//physical routes definitions
 app.use('/', home);
 app.use('/createsprites', create);
 app.use('/spritescreated', done);
 app.use('/errlogin', wronglog);
 app.use('/confirm', confAcc);
-//virtual routes controlers
+//virtual routes definitions
 app.use("/mail", signup);
 app.use("/login", signin);
-//development/testing controler
+//development/testing definition
 app.use("/emptydatabase", emptyDB);
 
 

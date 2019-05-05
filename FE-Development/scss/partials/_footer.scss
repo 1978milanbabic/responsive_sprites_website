@@ -3,7 +3,8 @@ footer {
     display: table-row;
     height: rem(30);
     text-align: left;
-    background-image: linear-gradient(to bottom,rgb(213, 238, 255) , rgb(224, 250, 255), rgb(213, 238, 255));
+    background-image: linear-gradient(to bottom,rgb(236, 236, 236) 0,#cecece 100%);
+    box-shadow: 0 0 10px rgb(146, 146, 146);
 
     .footer__inner {
         display: table-cell;
@@ -22,6 +23,5 @@ footer {
             text-decoration: underline;
         }
     }
-
 
 }//footer

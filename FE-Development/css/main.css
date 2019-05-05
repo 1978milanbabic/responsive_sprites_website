@@ -300,8 +300,10 @@ footer {
   display: table-row;
   height: 1.875rem;
   text-align: left;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#d5eeff), color-stop(#e0faff), to(#d5eeff));
-  background-image: linear-gradient(to bottom, #d5eeff, #e0faff, #d5eeff);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ececec), to(#cecece));
+  background-image: linear-gradient(to bottom, #ececec 0, #cecece 100%);
+  -webkit-box-shadow: 0 0 10px #929292;
+          box-shadow: 0 0 10px #929292;
 }
 
 footer .footer__inner {

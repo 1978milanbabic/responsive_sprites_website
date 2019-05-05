@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,QAAQ,CAAC;EACL,UAAU,EAAE,MAAM;EAClB,KAAK,EELF,IAAI;CFiBV;;AAdD,AAII,QAJI,CAIJ,EAAE,CAAC;EACC,SAAS,ECIL,IAAyB;EDH7B,cAAc,ECGV,SAAyB;CDFhC;;AAPL,AASI,QATI,CASJ,CAAC,CAAC;EACE,SAAS,ECDL,MAAyB;EDE7B,KAAK,EEbN,OAAiB;CFcnB",
+    "sources": [
+        "../scss/confirm.scss",
+        "../scss/variables/_basic-vars.scss",
+        "../scss/variables/_colors.scss"
+    ],
+    "names": [],
+    "file": "confirm.css"
+}

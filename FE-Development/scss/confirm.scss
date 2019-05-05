@@ -1,0 +1,18 @@
+@import 'variables/basic-vars';
+@import 'variables/colors';
+
+.confirm {
+    text-align: center;
+    color: $dark;
+
+    h1 {
+        font-size: rem(32);
+        padding-bottom: rem(15);
+    }
+
+    p {
+        font-size: rem(24);
+        color: $info;
+    }
+
+}
