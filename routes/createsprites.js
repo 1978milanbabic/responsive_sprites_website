@@ -1,17 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const del = require('del');
 
+//gulp
 const gulp = require('gulp');
 const spritesmith = require('gulp.spritesmith');
 const merge = require('merge-stream');
 
-const del = require('del');
+const getUser = request => request.cookies.user;
 
 
 /* DISPLAY CREATESPRITES PAGE. */
 router.get('/', (req, res, next) => {
-    //first delete previous uploads and creations
-    //del.sync(['public/uploads/**', '!public/uploads']);         //delete pics - leave upload folder
+    //user loged in
+    let user = getUser(req);
+    let spritesPath = "./public/uploads/" + user + "/createdsprites/";
+    let notSpritesPath = "!public/uploads/" + user + "/createdsprites";
+
+    //first delete previous creations
+    del.sync([spritesPath + '**/*', notSpritesPath]);         //delete sprites - leave sprites folder
 
     //render page
     res.render('createsprites', {
@@ -23,10 +30,14 @@ router.get('/', (req, res, next) => {
 
 /* POST REQUEST FOR UPLOADING IMGS */
 router.post('/upload', (req, res, next) => {
+    //user loged in
+    let user = getUser(req);
+    let uploadPath = "./public/uploads/" + user + "/uploads/";
+
     if (req.files) {
         let file = req.files.file;
         let filename = file.name;
-        file.mv("./public/uploads/" + filename, (err) => {
+        file.mv(uploadPath + filename, (err) => {
             if (err) {
                 console.log(err);
                 res.send(err);
@@ -39,6 +50,11 @@ router.post('/upload', (req, res, next) => {
 
 /* POST DATA REQUEST for start creating sprite */
 router.post('/create', (req, res, next) => {
+    //user loged in
+    let user = getUser(req);
+    let uploadPath = "./public/uploads/" + user + "/uploads/";
+    let spritesPath = "./public/uploads/" + user + "/createdsprites/";
+
     //posts!!!
     let posts = req.body;
     for (let key in posts) {
@@ -47,20 +63,19 @@ router.post('/create', (req, res, next) => {
 
     //gulp task create
     gulp.task('sprite', () => {
-        const spriteData = gulp.src('./public/uploads/**/*.png')
+        const spriteData = gulp.src(uploadPath + '*.png')
             .pipe(spritesmith({
                 /* this whole image path is used in css background declarations */
-                imgName: '../images/sprite.png',
+                imgName: 'sprites.png',
                 cssName: 'sprite.json',
                 padding: 10
-
             }));
         const imgStream = spriteData.img
             //        .pipe(buffer())
             //        .pipe(imagemin())
-            .pipe(gulp.dest('./public/createdsprites/images/'));
+            .pipe(gulp.dest(spritesPath));
         const cssStream = spriteData.css
-            .pipe(gulp.dest('./public/createdsprites/stylesheets/'));
+            .pipe(gulp.dest(spritesPath));
 
         return merge(imgStream, cssStream).on('end', () => { res.send('ok'); });
     });

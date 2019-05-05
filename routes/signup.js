@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 //db model
 const User = require('../models/users');
-const fs = require('fs');
+
 
 //random character generator
 const makeid = (len) => {

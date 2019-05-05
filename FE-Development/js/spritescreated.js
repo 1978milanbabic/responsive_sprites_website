@@ -9,8 +9,9 @@
 (function ($, doc) {
     $(doc).ready(function () {
 
-        $.get("./createdsprites/stylesheets/sprite.json",
+        $.get(jsonsrc,
             function (data) {
+
                 $("textarea").empty();
                 var cont = $(".jsonobj");
 
@@ -25,7 +26,6 @@
                 cont.append('var ' + var_spritename + ' = {' + _nl);
                 cont.append('' + _tab + 'cssclass: "' + cssclass + '",' + _nl);
                 cont.append('' + _tab + 'img_source: "' + img_source + '",' + _nl);
-
 
 
                 var nmbofpics = Object.keys(data).length;
@@ -74,21 +74,21 @@
 })(jQuery, document);
 
 //back button to anull previous creations
-(function (win) {
-    var targetLocation = function () {
-        var url = './createsprites';
-        win.history && win.history.pushState && win.history.pushState(null, null, win.location);
-        win.addEventListener && win.addEventListener('popstate', function () {
-            win.location = url;
-        }, !1)
-    };
-    (function () {
-        if (win.addEventListener) {
-            win.addEventListener('pageshow', function () {
-                setTimeout(targetLocation, 0);
-            }, !1)
-        } else {
-            setTimeout(targetLocation, 0);
-        }
-    }())
-}(window));
+// (function (win) {
+//     var targetLocation = function () {
+//         var url = './createsprites';
+//         win.history && win.history.pushState && win.history.pushState(null, null, win.location);
+//         win.addEventListener && win.addEventListener('popstate', function () {
+//             win.location = url;
+//         }, !1)
+//     };
+//     (function () {
+//         if (win.addEventListener) {
+//             win.addEventListener('pageshow', function () {
+//                 setTimeout(targetLocation, 0);
+//             }, !1)
+//         } else {
+//             setTimeout(targetLocation, 0);
+//         }
+//     }())
+// }(window));
