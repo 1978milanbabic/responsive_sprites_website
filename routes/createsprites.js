@@ -11,9 +11,7 @@ const del = require('del');
 /* DISPLAY CREATESPRITES PAGE. */
 router.get('/', (req, res, next) => {
     //first delete previous uploads and creations
-    del.sync(['public/uploads/**', '!public/uploads']);         //delete pics - leave upload folder
-    //del.sync(['public/createdsprites/images/**', '!public/createdsprites/images']);         //delete sprites - leave created sprites folder - zajebava delete slike ponekad
-    //del.sync(['public/createdsprites/stylesheets/**', '!public/createdsprites/stylesheets']);         //delete jsons - leave created jsons folder
+    //del.sync(['public/uploads/**', '!public/uploads']);         //delete pics - leave upload folder
 
     //render page
     res.render('createsprites', {

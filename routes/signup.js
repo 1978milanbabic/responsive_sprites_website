@@ -3,6 +3,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 //db model
 const User = require('../models/users');
+const fs = require('fs');
 
 //random character generator
 const makeid = (len) => {
@@ -24,14 +25,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-//directory creating
-const checkDirectorySync = directory => {
-    try {
-        fs.statSync(directory);
-    } catch (e) {
-        fs.mkdirSync(directory);
-    }
-}
 
 
 /* mailer (sign up) controler */
@@ -66,6 +59,21 @@ router.post('/', (req, res, next) => {
                             subject: 'RSF confirmation',
                             text: 'Please confirm your account verification by clicking on following link:\n http://responsive-sprites.com/confirm/' + randConf
                         };
+
+                        //create folder for future user files storage
+                        let userDir = 'public/uploads/' + un;
+                        fs.stat(userDir, (err) => {
+                            if (!err) {
+                                console.log('file or directory exists');
+                            }
+                            else if (err.code === 'ENOENT') {
+                                console.log('file or directory does not exist');
+                                fs.mkdir(userDir);
+                                fs.mkdir(userDir + "/uploads");
+                                fs.mkdir(userDir + "/createdsprites")
+                            }
+                        });
+
                         transporter.sendMail(mailOptions, (error, info) => {
                             if (error) {
                                 console.log(error);
@@ -73,8 +81,7 @@ router.post('/', (req, res, next) => {
                             } else {
                                 console.log('Email sent: ' + info.response);
                                 res.send("Please check out your email to verify your account!");
-                                //create folder for future user files storage
-                                checkDirectorySync("/exampledir");
+
                             }
                         });
                     })
