@@ -128,6 +128,47 @@
             word-break: break-all;
         }
 
+        .imgname {
+            font-size: rem(18);
+            line-height: 2;
+        }
+
+        .imgtype {
+            font-size: rem(18);
+            font-style: italic;
+            line-height: 2;
+        }
+
+        .remove {
+            position: absolute;
+            z-index: 4;
+            top: -15px;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background-image: url(../images/abort.png);
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .rename {
+            width: 100%;
+            text-align: center;
+            font-size: rem(16);
+            color: #fff;
+            background-color: $info;
+            padding: rem(4);
+            border-radius: rem(8);
+            cursor: pointer;
+            border: 1px solid $info;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .rename:hover {
+            color: $info;
+            background-color: #fff;
+        }
+
     }
 
     #progress-wrp {

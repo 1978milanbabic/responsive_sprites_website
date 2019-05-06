@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const del = require('del');
+const fs = require('fs');
 
 //gulp
 const gulp = require('gulp');
@@ -54,6 +55,48 @@ router.post('/upload', (req, res, next) => {
     }
 });
 
+/* POST REQUEST FOR REMOVING IMGS */
+router.post('/removeimg', (req, res, next) => {
+    //user loged in
+    let user = getUser(req);
+    let uploadPath = "./public/uploads/" + user + "/uploads/";
+    let pic = req.body.removePic;
+
+    try {
+        //delete pic
+        del.sync(uploadPath + pic);
+        res.send("pic " + pic + " removed!");
+    }
+    catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+
+});
+
+/* POST REQUEST FOR RENAMING IMGS */
+router.post('/renameimg', (req, res, next) => {
+    //user loged in
+    let user = getUser(req);
+    let uploadPath = "./public/uploads/" + user + "/uploads/";
+
+    //post data destructured
+    let { oldName, newName } = { ...req.body };
+
+    try {
+        //rename pic
+        fs.rename(uploadPath + oldName, uploadPath + newName, (err) => {
+            err ? next(err) : res.send("pic " + oldName + " renamed to " + newName);
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+
+});
+
+
 /* POST DATA REQUEST for start creating sprite */
 router.post('/create', (req, res, next) => {
     //user loged in
@@ -87,7 +130,6 @@ router.post('/create', (req, res, next) => {
     });
 
     gulp.start('sprite');
-
 
 });
 

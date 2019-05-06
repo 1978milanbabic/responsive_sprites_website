@@ -40,9 +40,6 @@
                     if (firstelem) {
                         firstelem = false;
 
-                        var tot_width;
-                        var tot_height;
-
                         cont.append('' + _tab + 'total_width: ' + data[key]["total_width"] + ',' + _nl);
                         cont.append('' + _tab + 'total_height: ' + data[key]["total_height"] + ',' + _nl);
 
@@ -72,23 +69,3 @@
 
     });
 })(jQuery, document);
-
-//back button to anull previous creations
-// (function (win) {
-//     var targetLocation = function () {
-//         var url = './createsprites';
-//         win.history && win.history.pushState && win.history.pushState(null, null, win.location);
-//         win.addEventListener && win.addEventListener('popstate', function () {
-//             win.location = url;
-//         }, !1)
-//     };
-//     (function () {
-//         if (win.addEventListener) {
-//             win.addEventListener('pageshow', function () {
-//                 setTimeout(targetLocation, 0);
-//             }, !1)
-//         } else {
-//             setTimeout(targetLocation, 0);
-//         }
-//     }())
-// }(window));

@@ -131,16 +131,6 @@
                 upload.doUpload();
             }
 
-
-
-
-            // maybe check size or type here with upload.getSize() and upload.getType()
-
-
-            // execute upload
-            //upload.doUpload();
-
-
             //files list
             var fileUpdateStart = picNmb;
             var inputF = document.getElementById("uploadfiles");
@@ -152,15 +142,91 @@
                     addClass: "upcont upcont" + i
                 });
 
+                var $removeThis = $("<div>", {
+                    addClass: "remove",
+                    click: function () {
+                        removeImg(this);
+                    },
+                    attr: {
+                        title: "delete picture"
+                    }
+                });
+
+                var $renameThis = $("<div>", {
+                    addClass: "rename",
+                    click: function () {
+                        renameImg(this);
+                    },
+                    html: "Rename"
+                });
+
+                $uploadedPicContainer.append($removeThis);
                 $uploadedPicContainer.append('<div class="imgcont"><div class="loading"><img src="./images/ajax-loader.gif" alt=""></div></div>');
-                $uploadedPicContainer.append('<p>' + inputF.files[lisrNmb].name + '</p>');
-                $uploadedPicContainer.append('<p>' + inputF.files[lisrNmb].type + '</p>');
+                $uploadedPicContainer.append('<p class="imgname">' + inputF.files[lisrNmb].name + '</p>');
+                $uploadedPicContainer.append($renameThis);
+                $uploadedPicContainer.append('<p class="imgtype">' + inputF.files[lisrNmb].type + '</p>');
 
                 $("#uploaded").append($uploadedPicContainer);
 
             }
 
         });
+
+        function removeImg(el) {
+            var $self = $(el);
+            var $parent = $self.parent();
+            var imgName = $parent.find(".imgname").html();
+
+            $parent.remove();
+            //remove pic request
+            $.ajax({
+                type: "POST",
+                url: "./createsprites/removeimg",
+                data: {
+                    removePic: imgName
+                },
+                success: function (resp) {
+                    console.log(resp);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function renameImg(el) {
+            var $self = $(el);
+            var $parent = $self.parent();
+            var fullImgName = $parent.find(".imgname").html();
+            var imgName = fullImgName.split(".")[0];
+            var extension = fullImgName.split(".")[1];
+
+            var newName = prompt("Rename?", imgName);
+
+            if (newName != null && newName.length > 0) {
+                //rename image
+                var newFullName = newName + "." + extension;
+                //localy
+                $parent.find(".imgname").html(newFullName);
+
+                //request pic rename
+                $.ajax({
+                    type: "POST",
+                    url: "./createsprites/renameimg",
+                    data: {
+                        oldName: fullImgName,
+                        newName: newFullName
+                    },
+                    success: function (resp) {
+                        console.log(resp);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+
+            }
+        }
 
     });
 })(jQuery, document);
