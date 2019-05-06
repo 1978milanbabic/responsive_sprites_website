@@ -264,6 +264,14 @@
   font-style: italic;
 }
 
+.createsprites .framedata span.sub {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  display: inline-block;
+  font-size: 1rem;
+  font-style: italic;
+}
+
 .createsprites .framedata input[type='text'] {
   width: 150px;
   margin: 0 0 2.1875rem 1.5625rem;

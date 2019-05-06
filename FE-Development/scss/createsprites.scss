@@ -260,6 +260,13 @@
             }
         }
 
+        span.sub {
+            transform: translateY(-20px);
+            display: inline-block;
+            font-size: rem(16);
+            font-style: italic;
+        }
+
         input[type='text'] {
             width: 150px;
             margin: 0 0 rem(35) rem(25);
