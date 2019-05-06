@@ -29,20 +29,20 @@
 
             <form id="opts">
 
-                <p>Choose images type: &emsp;<span>IMPORTANT!</span></p>
+                <p>Choose Your Sprites image type: &emsp;<span>IMPORTANT!</span></p>
                 <br>
                 <input type="radio" name="imgtype" value="jpeg" id="inimgjpg">
-                <label for="inimgjpg">JPG</label>
+                <label for="inimgjpg">.JPG</label>
                 <br><br>
                 <input type="radio" name="imgtype" value="png" id="inimgpng">
-                <label for="inimgpng">PNG</label>
+                <label for="inimgpng">.PNG</label>
                 <br><br><br>
 
                 <p>Choose padding between images:</p>
                 <br>
-                <input type="number" name="padding" value="0" min="0" max="100">
+                <input type="number" name="padding" value="0" min="0" max="100"><br>
 
-                <p>Choose background color (effective only if JPG - ignored if PNG):</p>
+                <p>Choose background color for sprites image (effective only if JPG - ignored if PNG):</p>
                 <br>
                 <input type="color" name="bgcolor" value="#ffffff">
 
@@ -54,13 +54,13 @@
 
                 <p>Choose your sprites image name:</p>
                 <br>
-                <input type="text" name="imgname" value="sprites">
+                <input type="text" name="imgname" value="sprites">&emsp;<span>.png / .jpg</span><br>
 
                 <p>Choose your folder path (relative to your project file/index):</p>
                 <br>
-                <input type="text" name="folder" value="./img/">
+                <input type="text" name="folder" value="./img/"><br>
 
-                <p>Choose your sprites class initiation name:</p>
+                <p>Choose your sprites class initiation name:&emsp;<span>&lt;i class="<span style="color:red">sprites</span>-imgname"&gt;&lt;&#47;i&gt;</span></p>
                 <br>
                 <input type="text" name="cname" value="sprites">
 

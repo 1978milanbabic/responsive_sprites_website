@@ -207,7 +207,10 @@
 
         p {
             font-size: rem(18);
-            text-decoration: underline;
+            display: inline-block;
+            padding: rem(2) rem(10);
+            background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.2));
+            margin-bottom: rem(35);
 
             span {
                 font-weight: 700;
@@ -247,7 +250,14 @@
 
         p {
             font-size: rem(18);
-            text-decoration: underline;
+            display: inline-block;
+            padding: rem(2) rem(10);
+            background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.2));
+            margin-bottom: rem(35);
+
+            span {
+                font-style: italic;
+            }
         }
 
         input[type='text'] {

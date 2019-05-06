@@ -209,7 +209,11 @@
 
 .createsprites #opts p {
   font-size: 1.125rem;
-  text-decoration: underline;
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.2)));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  margin-bottom: 2.1875rem;
 }
 
 .createsprites #opts p span {
@@ -249,7 +253,15 @@
 
 .createsprites .framedata p {
   font-size: 1.125rem;
-  text-decoration: underline;
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.2)));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  margin-bottom: 2.1875rem;
+}
+
+.createsprites .framedata p span {
+  font-style: italic;
 }
 
 .createsprites .framedata input[type='text'] {
