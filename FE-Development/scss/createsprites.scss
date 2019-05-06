@@ -3,7 +3,7 @@
 
 .createsprites {
 
-    .step {
+    h2.step {
         font-weight: 700;
         color: #fff;
         width: 100%;
@@ -11,6 +11,7 @@
         padding: rem(3) 0 rem(3) rem(10);
         background-color: $info;
         margin: rem(25) 0;
+        font-size: rem(16);
     }
 
     h1 {
@@ -53,7 +54,7 @@
             cursor: pointer;
         }
 
-        h2 {
+        h3 {
             width: 100%;
             position: absolute;
             padding: 0 rem(15);
@@ -200,4 +201,87 @@
         }
     }
 
-}
+    #opts {
+        width: 100%;
+        display: block;
+
+        p {
+            font-size: rem(18);
+            text-decoration: underline;
+
+            span {
+                font-weight: 700;
+                color: red;
+            }
+        }
+
+        label {
+            font-size: rem(18);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        input[type='radio'] {
+            margin-left: rem(25);
+        }
+
+        input[type='color'] {
+            margin-left: rem(25);
+            margin-bottom: rem(35);
+            width: 100px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        input[type='number'] {
+            width: 60px;
+            margin: 0 0 rem(35) rem(25);
+            padding: rem(5) rem(7);
+            font-size: rem(18);
+            font-style: normal;
+        }
+    }
+
+    .framedata {
+        width: 100%;
+
+        p {
+            font-size: rem(18);
+            text-decoration: underline;
+        }
+
+        input[type='text'] {
+            width: 150px;
+            margin: 0 0 rem(35) rem(25);
+            padding: rem(5) rem(7);
+            font-size: rem(18);
+            font-style: normal;
+        }
+    }
+
+    .submitcreate {
+        width: 100%;
+        padding: rem(35) rem(45) rem(75) rem(45);
+
+        #uploadbtn {
+            padding: rem(5) rem(15);
+            font-size: rem(24);
+            font-weight: 700;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            border: 1px solid $btn;
+            background-color: $btn;
+            box-shadow: 2px 2px rem(10) rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #uploadbtn:hover {
+            color: $btn;
+            background-color: #fff;
+            box-shadow: none;
+        }
+    }
+
+}//createsprites
+

@@ -41,7 +41,7 @@ router.post('/upload', (req, res, next) => {
     let user = getUser(req);
     let uploadPath = "./public/uploads/" + user + "/uploads/";
 
-    if (req.files) {
+    if (req.files && user) {
         let file = req.files.file;
         let filename = file.name;
         file.mv(uploadPath + filename, (err) => {
@@ -52,6 +52,8 @@ router.post('/upload', (req, res, next) => {
                 res.send("ok");
             }
         });
+    } else {
+        next(err);
     }
 });
 
@@ -98,35 +100,78 @@ router.post('/renameimg', (req, res, next) => {
 
 
 /* POST DATA REQUEST for start creating sprite */
+
 router.post('/create', (req, res, next) => {
     //user loged in
     let user = getUser(req);
     let uploadPath = "./public/uploads/" + user + "/uploads/";
     let spritesPath = "./public/uploads/" + user + "/createdsprites/";
 
-    //posts!!!
-    let posts = req.body;
-    for (let key in posts) {
-        console.log(key, posts[key]);
+    //post data destructuring!!!
+    let { picType, padding, bgdColor, imgName, folder, className } = { ...req.body };
+
+    //padding limmit
+    padding = parseInt(padding);
+
+    if (padding > 100) {
+        padding = 100;
     }
+    if (padding < 0) {
+        padding = 0;
+    }
+
+    //picType change noms && backcol deff
+    const hexToRgba = hex => {
+        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        if (result) {
+            let r = parseInt(result[1], 16);
+            let g = parseInt(result[2], 16);
+            let b = parseInt(result[3], 16);
+            return [r, g, b, 1];
+        } else {
+            return [255, 255, 255, 1]
+        }
+    }
+
+    if (picType === "jpeg") {
+        picType = "jpg";
+        bgdColor = hexToRgba(bgdColor);
+    } else {
+        bgdColor = [0, 0, 0, 0];
+    }
+
+    //development
+    console.log(
+        picType,
+        padding,
+        bgdColor,
+        imgName,
+        folder,
+        className
+    );
+
+    let dataCookie = JSON.stringify({ picType, imgName, folder, className });
 
     //gulp task create
     gulp.task('sprite', () => {
-        const spriteData = gulp.src(uploadPath + '*.png')
+        const spriteData = gulp.src(uploadPath + '*.' + picType)
             .pipe(spritesmith({
                 /* this whole image path is used in css background declarations */
-                imgName: 'sprites.png',
+                imgName: imgName + '.' + picType,
                 cssName: 'sprite.json',
-                padding: 10
+                padding: padding,
+                imgOpts: {
+                    background: bgdColor
+                }
             }));
         const imgStream = spriteData.img
-            //        .pipe(buffer())
-            //        .pipe(imagemin())
             .pipe(gulp.dest(spritesPath));
         const cssStream = spriteData.css
             .pipe(gulp.dest(spritesPath));
 
-        return merge(imgStream, cssStream).on('end', () => { res.send('ok'); });
+        return merge(imgStream, cssStream).on('end', () => {
+            res.cookie("data", dataCookie).send('ok');
+        });
     });
 
     gulp.start('sprite');

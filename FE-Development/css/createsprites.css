@@ -1,4 +1,4 @@
-.createsprites .step {
+.createsprites h2.step {
   font-weight: 700;
   color: #fff;
   width: 100%;
@@ -6,6 +6,7 @@
   padding: 0.1875rem 0 0.1875rem 0.625rem;
   background-color: #4eb8ff;
   margin: 1.5625rem 0;
+  font-size: 1rem;
 }
 
 .createsprites h1 {
@@ -50,7 +51,7 @@
   cursor: pointer;
 }
 
-.createsprites #upload h2 {
+.createsprites #upload h3 {
   width: 100%;
   position: absolute;
   padding: 0 0.9375rem;
@@ -199,5 +200,90 @@
   position: absolute;
   display: inline-block;
   color: #000000;
+}
+
+.createsprites #opts {
+  width: 100%;
+  display: block;
+}
+
+.createsprites #opts p {
+  font-size: 1.125rem;
+  text-decoration: underline;
+}
+
+.createsprites #opts p span {
+  font-weight: 700;
+  color: red;
+}
+
+.createsprites #opts label {
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.createsprites #opts input[type='radio'] {
+  margin-left: 1.5625rem;
+}
+
+.createsprites #opts input[type='color'] {
+  margin-left: 1.5625rem;
+  margin-bottom: 2.1875rem;
+  width: 100px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.createsprites #opts input[type='number'] {
+  width: 60px;
+  margin: 0 0 2.1875rem 1.5625rem;
+  padding: 0.3125rem 0.4375rem;
+  font-size: 1.125rem;
+  font-style: normal;
+}
+
+.createsprites .framedata {
+  width: 100%;
+}
+
+.createsprites .framedata p {
+  font-size: 1.125rem;
+  text-decoration: underline;
+}
+
+.createsprites .framedata input[type='text'] {
+  width: 150px;
+  margin: 0 0 2.1875rem 1.5625rem;
+  padding: 0.3125rem 0.4375rem;
+  font-size: 1.125rem;
+  font-style: normal;
+}
+
+.createsprites .submitcreate {
+  width: 100%;
+  padding: 2.1875rem 2.8125rem 4.6875rem 2.8125rem;
+}
+
+.createsprites .submitcreate #uploadbtn {
+  padding: 0.3125rem 0.9375rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  border: 1px solid #3ed320;
+  background-color: #3ed320;
+  -webkit-box-shadow: 2px 2px 0.625rem rgba(0, 0, 0, 0.6);
+          box-shadow: 2px 2px 0.625rem rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.createsprites .submitcreate #uploadbtn:hover {
+  color: #3ed320;
+  background-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 /*# sourceMappingURL=createsprites.css.map */

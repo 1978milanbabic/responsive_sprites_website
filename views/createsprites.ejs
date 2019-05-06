@@ -4,12 +4,12 @@
 
             <h1>Create Your Sprites Image for Responsive Sprites Framework</h1>
 
-            <p class="step">STEP 1: &emsp;upload images</p>
+            <h2 class="step">STEP 1: &emsp;upload images</h2>
 
             <div id="upload">
                 <div class="upload__inner">
-                    <h2>Drag and Drop Your Images HERE or Click to Upload Manually</h2>
-                    <input type="file" multiple="" id="uploadfiles" name="files[]">
+                    <h3>Drag and Drop Your Images HERE or Click to Upload Manually</h3>
+                    <input type="file" multiple="" id="uploadfiles" name="files[]" accept="image/jpeg, image/png">
                 </div>
             </div>
 
@@ -18,39 +18,58 @@
                 <div class="status">0%</div>
             </div>
 
-            <p class="step">STEP 2: &emsp;edit images</p>
+            <h2 class="step">STEP 2: &emsp;edit images</h2>
 
             <div id="uploaded">
                 <h3>*** Note that images names will be part of class names of your sprites.<br> Try to keep them as simple as possible and avoid duplicating names.</h3>
 
             </div>
 
-            <p class="step">STEP 3: &emsp;configure sprites</p>
+            <h2 class="step">STEP 3: &emsp;configure sprites</h2>
 
-            <div id="opts">
+            <form id="opts">
 
-                <p>Choose images type:</p>
+                <p>Choose images type: &emsp;<span>IMPORTANT!</span></p>
                 <br>
-                <input type="radio" name="imgtype" value="jpg" id="inimgjpg">
+                <input type="radio" name="imgtype" value="jpeg" id="inimgjpg">
                 <label for="inimgjpg">JPG</label>
-                <br>
+                <br><br>
                 <input type="radio" name="imgtype" value="png" id="inimgpng">
                 <label for="inimgpng">PNG</label>
+                <br><br><br>
 
-                <p>Choose background color RGB (effective only if JPG - ignored if PNG):</p>
+                <p>Choose padding between images:</p>
                 <br>
-                <input type="text" name="bgcolor" value="#fff">
+                <input type="number" name="padding" value="0" min="0" max="100">
 
-                <p>Choose padding:</p>
+                <p>Choose background color (effective only if JPG - ignored if PNG):</p>
                 <br>
-                <input type="number" name="padding" value="1">
+                <input type="color" name="bgcolor" value="#ffffff">
 
+            </form>
+
+            <h2 class="step">STEP 4: &emsp;framework data</h2>
+
+            <div class="framedata">
+
+                <p>Choose your sprites image name:</p>
+                <br>
+                <input type="text" name="imgname" value="sprites">
+
+                <p>Choose your folder path (relative to your project file/index):</p>
+                <br>
+                <input type="text" name="folder" value="./img/">
+
+                <p>Choose your sprites class initiation name:</p>
+                <br>
+                <input type="text" name="cname" value="sprites">
 
             </div>
 
+            <h2 class="step">LAST STEP: &emsp;create sprites</h2>
+
             <div class="submitcreate">
-                <p class="step">LAST STEP: &emsp;create sprites</p>
-                <button id="uploadbtn" type="button">SPRITE ME!</button>
+                <button id="uploadbtn" type="button">CREATE SPRITES!</button>
             </div>
 
         </div>

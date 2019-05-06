@@ -27,7 +27,6 @@ router.get('/', (req, res, next) => {
         title: 'Sprites Created!',
         css: ['main.css', 'spritescreated.css'],
         js: ["main.js"],
-        spritesrc: spritesPathFrontEnd + "sprites.png",
         jsonsrc: spritesPathFrontEnd + "sprite.json"
     });
 });

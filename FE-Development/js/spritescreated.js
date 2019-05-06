@@ -1,13 +1,36 @@
 //login check script
 (function (win) {
+    function checkData() {
+        var tryName = getCookie("data");
+        if (tryName && tryName != "" && tryName != "undefined" && tryName != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     if (!checkLog()) {
         win.location.replace("./errlogin");
+    }
+
+    if (!checkData()) {
+        win.location.replace("./");
+    } else {
+        var datCVal = getCookie("data");
+        setCookie("data", datCVal, 12);
     }
 })(window);
 
 //display result
 (function ($, doc) {
     $(doc).ready(function () {
+
+        //get data Cookie vals
+        var dataVals = JSON.parse(unescape(getCookie("data")));
+        //development!!!
+        console.log(dataVals);
+
+        $("#spriteimg").attr("src", "/uploads/" + unescape(userNameCookie) + "/createdsprites/" + dataVals.imgName + "." + dataVals.picType);
 
         $.get(jsonsrc,
             function (data) {
@@ -16,9 +39,9 @@
                 var cont = $(".jsonobj");
 
                 var var_spritename = "pngs_data";
-                var cssclass = "sprites";
-                var picname = "sprite.png";
-                var img_source = "./img/" + picname;
+                var cssclass = dataVals.className;
+                var picname = dataVals.imgName + "." + dataVals.picType;
+                var img_source = dataVals.folder + picname;
 
                 var _tab = "&#9;";
                 var _nl = "\n";
@@ -64,6 +87,9 @@
                 cont.append('' + _tab + '}' + comm + '' + _nl);
 
                 cont.append('};');
+
+                //delete cookie data
+                setCookie("data", "", -13);
             }
         );
 

@@ -9,17 +9,35 @@
 (function ($, doc) {
     $(doc).ready(function () {
 
-        //************ files upload ***************
+        //confirm log before any action
+        function confLog(proceed) {
+            if (!checkLog()) {
+                win.location.replace("./errlogin");
+            } else {
+                proceed();
+                //prolong cookie
+                setCookie("user", userNameCookie, 0.5);
+            }
+        }
+
         //********* request creation of files ***********
-        function callSprites() {
+        function callSprites(picType, padding, bgdColor, imgName, folder, className) {
             $.post("./createsprites/create", {
-                creating: "sprites"
+                picType: picType,
+                padding: padding,
+                bgdColor: bgdColor,
+                imgName: imgName,
+                folder: folder,
+                className: className
             }, function () {
                 console.log("post sent");
             }).done(function (data) {
                 if (data != "ok") {
                     console.log(data);
                 } else {
+                    //save data cookie
+
+                    //redirect
                     setTimeout(function () {
                         window.location = "./spritescreated";
                     }, 1000);
@@ -27,11 +45,33 @@
             });
         }
 
+        //do sprites on btn
+        //scoped data for sending
+        var picType;    //value on input[type='radio'] change action
+
         $("#uploadbtn").click(function (event) {
             event.preventDefault();
-            callSprites();
+            confLog(function () {
+
+                var padding = $("input[name='padding']").val();
+                var bgdColor = $("input[name='bgcolor']").val();
+                var imgName = $("input[name='imgname']").val();
+                var folder = $("input[name='folder']").val();
+                var className = $("input[name='cname']").val();
+
+                if (picType && padding >= 0 && bgdColor && imgName && folder && className) {
+                    //show loader
+                    $(".loader").css("display", "table");
+                    //send req for create sprites
+                    callSprites(picType, padding, bgdColor, imgName, folder, className);
+                } else {
+                    alert("You must define your sprites first!");
+                }
+            });
         });
 
+
+        //************ files upload ***************
         //first anull input val
         $("#uploadfiles").val("").change();
 
@@ -117,13 +157,13 @@
         };
 
 
-        $("#upload input").on("change", function (e) {
+        $("#upload input").on("change", function () {
             //reset progress to 0
             $("#progress-wrp .progress-bar").remove();
             $("#progress-wrp").append('<div class="progress-bar"></div>');
             $("#progress-wrp .status").text("0%");
 
-            //izmena
+            //change
             var files = $(this)[0].files;
             for (var key in files) {
                 var upload = new Upload(files[key]);
@@ -169,53 +209,22 @@
                 $("#uploaded").append($uploadedPicContainer);
 
             }
-
         });
 
         function removeImg(el) {
-            var $self = $(el);
-            var $parent = $self.parent();
-            var imgName = $parent.find(".imgname").html();
+            confLog(function () {
 
-            $parent.remove();
-            //remove pic request
-            $.ajax({
-                type: "POST",
-                url: "./createsprites/removeimg",
-                data: {
-                    removePic: imgName
-                },
-                success: function (resp) {
-                    console.log(resp);
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        }
+                var $self = $(el);
+                var $parent = $self.parent();
+                var imgName = $parent.find(".imgname").html();
 
-        function renameImg(el) {
-            var $self = $(el);
-            var $parent = $self.parent();
-            var fullImgName = $parent.find(".imgname").html();
-            var imgName = fullImgName.split(".")[0];
-            var extension = fullImgName.split(".")[1];
-
-            var newName = prompt("Rename?", imgName);
-
-            if (newName != null && newName.length > 0) {
-                //rename image
-                var newFullName = newName + "." + extension;
-                //localy
-                $parent.find(".imgname").html(newFullName);
-
-                //request pic rename
+                $parent.remove();
+                //remove pic request
                 $.ajax({
                     type: "POST",
-                    url: "./createsprites/renameimg",
+                    url: "./createsprites/removeimg",
                     data: {
-                        oldName: fullImgName,
-                        newName: newFullName
+                        removePic: imgName
                     },
                     success: function (resp) {
                         console.log(resp);
@@ -225,7 +234,65 @@
                     }
                 });
 
-            }
+            });
+        }
+
+        function renameImg(el) {
+            confLog(function () {
+
+                var $self = $(el);
+                var $parent = $self.parent();
+                var fullImgName = $parent.find(".imgname").html();
+                var imgName = fullImgName.split(".")[0];
+                var extension = fullImgName.split(".")[1];
+
+                var newName = prompt("Rename?", imgName);
+
+                if (newName != null && newName.length > 0) {
+                    //rename image
+                    var newFullName = newName + "." + extension;
+                    //localy
+                    $parent.find(".imgname").html(newFullName);
+
+                    //request pic rename
+                    $.ajax({
+                        type: "POST",
+                        url: "./createsprites/renameimg",
+                        data: {
+                            oldName: fullImgName,
+                            newName: newFullName
+                        },
+                        success: function (resp) {
+                            console.log(resp);
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+
+            });
+        }
+
+        //switch sprites types (JPG/PNG)
+        $("input[type='radio']").on("change", function () {
+            var setpicType = $(this).val();
+            aprovePics(setpicType);
+            //set scoped var
+            picType = setpicType;
+        });
+
+        function aprovePics(setpicType) {
+            var $upconts = $(".upcont");
+            $upconts.each(function () {
+                var $thisCont = $(this);
+                var thisType = $thisCont.find(".imgtype").html().split("/")[1];
+                if (thisType === setpicType) {
+                    $thisCont.removeClass("notaval");
+                } else {
+                    $thisCont.addClass("notaval");
+                }
+            });
         }
 
     });
