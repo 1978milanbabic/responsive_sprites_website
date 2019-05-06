@@ -82,7 +82,6 @@ router.post('/', (req, res, next) => {
                             } else {
                                 console.log('Email sent: ' + info.response);
                                 res.send("Please check out your email to verify your account!");
-
                             }
                         });
                     })
