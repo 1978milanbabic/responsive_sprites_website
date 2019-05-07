@@ -40,6 +40,8 @@
 
                 $("textarea").empty();
                 var cont = $(".jsonobj");
+                var imgVar = [];
+                imgVar.__proto__.append = function (args) { this.push(args) };
 
                 var var_spritename = "pngs_data";
                 var cssclass = dataVals.className;
@@ -48,12 +50,12 @@
 
                 var $table = $("table");
 
-                var _tab = "&#9;";
-                var _nl = "\n";
+                var _tab = "";      // &#9;
+                var _nl = "";       // \n
 
-                cont.append('var ' + var_spritename + ' = {' + _nl);
-                cont.append('' + _tab + 'cssclass: "' + cssclass + '",' + _nl);
-                cont.append('' + _tab + 'img_source: "' + img_source + '",' + _nl);
+                imgVar.append('var ' + var_spritename + ' = {' + _nl);
+                imgVar.append('' + _tab + 'cssclass: "' + cssclass + '",' + _nl);
+                imgVar.append('' + _tab + 'img_source: "' + img_source + '",' + _nl);
 
 
                 var nmbofpics = Object.keys(data).length;
@@ -68,13 +70,13 @@
                     if (firstelem) {
                         firstelem = false;
 
-                        cont.append('' + _tab + 'total_width: ' + data[key]["total_width"] + ',' + _nl);
-                        cont.append('' + _tab + 'total_height: ' + data[key]["total_height"] + ',' + _nl);
+                        imgVar.append('' + _tab + 'total_width: ' + data[key]["total_width"] + ',' + _nl);
+                        imgVar.append('' + _tab + 'total_height: ' + data[key]["total_height"] + ',' + _nl);
 
-                        cont.append('' + _tab + 'imgs: {' + '' + _nl);
+                        imgVar.append('' + _tab + 'imgs: {' + '' + _nl);
                     }
 
-                    cont.append('' + _tab + _tab + '"' + key + '": ' + '{' + _nl);
+                    imgVar.append('' + _tab + _tab + '"' + key + '": ' + '{' + _nl);
 
                     var comma_counts = 0, comma = ",";
                     for (var key2 in data[key]) {
@@ -83,10 +85,10 @@
                             if (comma_counts > 3) {
                                 comma = "";
                             }
-                            cont.append('' + _tab + _tab + _tab + key2 + ' : ' + data[key][key2] + comma + '' + _nl);
+                            imgVar.append('' + _tab + _tab + _tab + key2 + ' : ' + data[key][key2] + comma + '' + _nl);
                         }
                     }
-                    cont.append('' + _tab + _tab + '}' + comm + '' + _nl);
+                    imgVar.append('' + _tab + _tab + '}' + comm + '' + _nl);
 
                     //add User Helper Table Rows
                     var dataRow = $("<tr>");
@@ -99,7 +101,7 @@
                         attr: {
                             type: "text",
                             name: "i",
-                            value: '<i class="' + key + '"></i>'
+                            value: '<i class="' + cssclass + "-" + key + '"></i>'
                         }
                     });
                     dataCinfo.append(infoInput);
@@ -156,11 +158,19 @@
 
                 }
 
+                imgVar.append('' + _tab + '}' + comm + '' + _nl);
+
+                imgVar.append('};');
+
+                //imgVar created!
+                imgVar = imgVar.join("");
+
+                //insert imgVar into framework
 
 
-                cont.append('' + _tab + '}' + comm + '' + _nl);
+                //append prepared framework to textarea
+                cont.append(imgVar);
 
-                cont.append('};');
 
                 //delete cookie data
                 // setCookie("data", "", -13);
