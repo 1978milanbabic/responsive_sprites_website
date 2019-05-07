@@ -1,9 +1,10 @@
 # Node website (ejs) for responsive sprites framework (framework creation tool)
 
 
-##### Readme file - će nadalje biti pisan na Srpskom jeziku (mimo uobičajene prakse) jer je ovaj repozitorijum namenjen isključivo za potrebe odbrane završnog projekta na "Code" kursu za JavaScript
+### Readme file - će nadalje biti pisan na Srpskom jeziku (mimo uobičajene prakse) jer je ovaj repozitorijum namenjen isključivo za potrebe odbrane završnog projekta na "Code" kursu za JavaScript
 *Zbog sigurnosnih razloga postojećeg web sajta repozitorijum će uskoro biti uklonjen jer sadrži kritične bezbednosne informacije za funkcionisanje samog sajta*
- ----------
+
+----------
 
 
 ### Ideja:
