@@ -4,6 +4,9 @@
 ### Readme file - će nadalje biti pisan na Srpskom jeziku (mimo uobičajene prakse) jer je ovaj repozitorijum namenjen isključivo za potrebe odbrane završnog projekta na "Code" kursu za JavaScript
 *Zbog sigurnosnih razloga postojećeg web sajta repozitorijum će uskoro biti uklonjen jer sadrži kritične bezbednosne informacije za funkcionisanje samog sajta*
 
+
+## Link sajta: [http://responsive-sprites.com/](http://responsive-sprites.com/)
+
 ----------
 
 
@@ -22,3 +25,30 @@
  >  - Sprites image engine pokriva kreiranje png, kao i jpg fajlove uz gomilu opcija
  >  - Nakon uspešnog kreiranja sprites image-a, korisniku se nudi gotova implementacija frontend frameworka sa ubacenim podacima o slici koji se lako kopiraju i ubacuju u projekat, kao i download kreirane slike
  >  - Pomenuta stranica sadrži i sve pojedinačne sličice kako bi se lako i brzo copy/paste-primenilo u projekat
+ ----------
+
+
+### Detalji o backend-u:
+
+ >
+ ----------
+
+
+### Detalji o frontend-u:
+
+ >
+ ----------
+
+
+### Detalji o implementaciji:
+
+ >
+ ----------
+
+
+### Korišćeni alati i software-i:
+
+ >
+ ----------
+
+
