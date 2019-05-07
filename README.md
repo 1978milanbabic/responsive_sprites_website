@@ -56,13 +56,15 @@
 
 ### Detalji o implementaciji:
 
- >
+ > - Sajt je smešten na realnom VPS hostingu, sa realnim domenom. Zakupcu hostinga je ponudjena samo "prazna ploča", tako da sam sve instalirao sam - od Ubuntu-a, preko Node-a do mongoDB-a ... i još ponekih alatkica...
+ > - Pristup sajtu je obezbedjen preko SSH ključa, kao i upload sa gitHub-a preko drugog SSH ključa
  ----------
 
 
 ### Korišćeni alati i software-i:
 
- >
+ > - RAZVOJ: VsCode, Gulp, Sass, Chrome dev tools, mongod, node server, Mongo Management Studio, WinSCP, POstman, Photoshop
+ > - IMPLEMENTACIJA: PuTTY, WinSCP, "Linux komande", npm PM2 runtime
 
 
 
