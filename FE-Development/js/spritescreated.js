@@ -30,6 +30,9 @@
         //development!!!
         console.log(dataVals);
 
+        //set html folder data
+        $("#foldername").html(dataVals.folder);
+
         $("#spriteimg").attr("src", "/uploads/" + unescape(userNameCookie) + "/createdsprites/" + dataVals.imgName + "." + dataVals.picType);
 
         $.get(jsonsrc,
@@ -42,6 +45,8 @@
                 var cssclass = dataVals.className;
                 var picname = dataVals.imgName + "." + dataVals.picType;
                 var img_source = dataVals.folder + picname;
+
+                var $table = $("table");
 
                 var _tab = "&#9;";
                 var _nl = "\n";
@@ -82,16 +87,94 @@
                         }
                     }
                     cont.append('' + _tab + _tab + '}' + comm + '' + _nl);
+
+                    //add User Helper Table Rows
+                    var dataRow = $("<tr>");
+
+                    //info cell
+                    var dataCinfo = $("<td>", {
+                        addClass: "sinfo"
+                    });
+                    var infoInput = $("<input>", {
+                        attr: {
+                            type: "text",
+                            name: "i",
+                            value: '<i class="' + key + '"></i>'
+                        }
+                    });
+                    dataCinfo.append(infoInput);
+                    dataRow.append(dataCinfo);
+                    //scheck cell
+                    var scheckCell = $("<td>", {
+                        addClass: "scheck"
+                    });
+                    var sccBox = $("<a>", {
+                        attr: {
+                            href: "#"
+                        },
+                        html: "COPY",
+                        click: function (event) {
+                            event.preventDefault();
+                            //copy input
+                            var $this = $(this);
+                            var $input = $this.parent().parent().find(".sinfo input");
+                            $input.select();
+                            document.execCommand("copy");
+                            //change check
+                            var $checkCell = $this.parent().parent().find(".schecked");
+                            $checkCell.addClass("checked");
+                            var $check = $checkCell.find("input");
+                            $check.prop('checked', true).change();
+                        }
+                    });
+                    scheckCell.append(sccBox);
+                    dataRow.append(scheckCell);
+                    //schecked cell
+                    var scheckedCell = $("<td>", {
+                        addClass: "schecked"
+                    });
+                    var scInput = $("<input>", {
+                        attr: {
+                            type: "checkbox",
+                            name: "c"
+                        },
+                        click: function () {
+                            var $this = $(this);
+                            $this.attr('checked', false);
+                            //remove show class
+                            $this.parent().removeClass("checked");
+                        }
+                    });
+                    var scSpan = $("<span>", {
+                        html: "Used!"
+                    });
+                    scheckedCell.append(scInput).append(scSpan);
+                    dataRow.append(scheckedCell);
+
+                    //append to table
+                    $table.append(dataRow);
+
                 }
+
+
 
                 cont.append('' + _tab + '}' + comm + '' + _nl);
 
                 cont.append('};');
 
                 //delete cookie data
-                setCookie("data", "", -13);
+                // setCookie("data", "", -13);
+
             }
         );
+
+        //copy script text
+        $("#copy-script").click(function (event) {
+            event.preventDefault();
+            $("textarea.jsonobj").select();
+            document.execCommand("copy");
+        });
+
 
     });
 })(jQuery, document);
