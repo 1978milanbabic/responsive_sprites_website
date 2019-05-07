@@ -176,7 +176,7 @@
 
 
                 //delete cookie data
-                // setCookie("data", "", -13);
+                setCookie("data", "", -13);
 
             }
         );

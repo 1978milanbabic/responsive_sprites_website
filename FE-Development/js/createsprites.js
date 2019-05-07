@@ -123,7 +123,15 @@
                         $(this).parent().find(".loading").fadeOut(300);
                     });
 
-                    $(".upcont" + picNmb + " .imgcont").append($pic);
+                    //find pic cont and append to it
+                    $(".upcont").each(function () {
+                        var $this = $(this);
+                        //find cont for pic
+                        var picname = $this.find(".imgname").html();
+                        if (picname === pic) {
+                            $this.find(".imgcont").append($pic);
+                        }
+                    });
 
                     console.log("Pic upload Complete!", picNmb, data);
                     picNmb++;
