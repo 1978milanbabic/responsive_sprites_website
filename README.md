@@ -30,24 +30,24 @@
 
 ### Detalji o backend-u:
 
- > Backend-om upravlja Node.js/Express sa "ejs view-engine-om" na jednom procesu i mongoDB lokalno/na istoj mašini, na drugom procesu. Tokom developmenta isti princip je sledjen - node.js i lokalni mongoDB. Sam proces spajanja slika je kroz gulp modul koji node koristi interno i aktivno. Od modula karakterističnih za projekat tu su još i "del", "fs", "gulp", "gulp.spritesmith" i "merge-stream", pored uobičajenih: "express", "cookie-parser", "body-parser", "express-fileupload", "path"....
- > Smatrao sam za potrebnim da istaknem važnost logovanja, te sam stoga za taj error odvojio posebnu stranicu koja "viče" na ovu grešku
- > Greške koje bi prekinule proces - "srušile" sajt su lokalizovane na log na server-side i ignorisane/izbegnute - greške modula, greške operacija sa bazom,...
- > Za uobičajene greške sam izdvojio stanicu koja se renderuje i šalje stilizovana na frontend - 404, bad extension,...
- > Najveći problem na koji sam naišao jeste korišćenje pojedinih modula koji rade u sopstvenom "ekosistemu" - promisi često ne završavaju callback-om iako izvrše zadani zadatak, a negde u modulu ostaju informacije o "nedovršenom" poslu, tako da prilikom narednog poziva potencijalno "ruše" sajt. Ovo je karakteristično za async-sync funkcije unutar async okruženja. Rešenje sam našao u try/catch metodi i logovanjem greške na server, čime se resetuje status promisa pa je funkcija ponovo spremna za "upotrebu"
- > Svi fajlovi kojima "barata" korisnik se smeštaju/su smešteni u "public" folder jer smatram da je sve što se "upload-uje" na server od strane korisnika na neki način "prljav" fajl koji ne bi smeo da ulazi u "zaštićene" zone, odnosno foldere, tako da jedan korisnik praktično ima mogućnost da pristupi i "tudjim" slikama, ali to za ovu vrstu projekta nije ni značajno jer privatnost ovih slika nije bitna
- > Kompletan backend prati ECMA 6 JavaScript nomenklaturu
+ >  - Backend-om upravlja Node.js/Express sa "ejs view-engine-om" na jednom procesu i mongoDB lokalno/na istoj mašini, na drugom procesu. Tokom developmenta isti princip je sledjen - node.js i lokalni mongoDB. Sam proces spajanja slika je kroz gulp modul koji node koristi interno i aktivno. Od modula karakterističnih za projekat tu su još i "del", "fs", "gulp", "gulp.spritesmith" i "merge-stream", pored uobičajenih: "express", "cookie-parser", "body-parser", "express-fileupload", "path"....
+ >  - Smatrao sam za potrebnim da istaknem važnost logovanja, te sam stoga za taj error odvojio posebnu stranicu koja "viče" na ovu grešku
+ >  - Greške koje bi prekinule proces - "srušile" sajt su lokalizovane na log na server-side i ignorisane/izbegnute - greške modula, greške operacija sa bazom,...
+ >  - Za uobičajene greške sam izdvojio stanicu koja se renderuje i šalje stilizovana na frontend - 404, bad extension,...
+ >  - Najveći problem na koji sam naišao jeste korišćenje pojedinih modula koji rade u sopstvenom "ekosistemu" - promisi često ne završavaju callback-om iako izvrše zadani zadatak, a negde u modulu ostaju informacije o "nedovršenom" poslu, tako da prilikom narednog poziva potencijalno "ruše" sajt. Ovo je karakteristično za async-sync funkcije unutar async okruženja. Rešenje sam našao u try/catch metodi i logovanjem greške na server, čime se resetuje status promisa pa je funkcija ponovo spremna za "upotrebu"
+ >  - Svi fajlovi kojima "barata" korisnik se smeštaju/su smešteni u "public" folder jer smatram da je sve što se "upload-uje" na server od strane korisnika na neki način "prljav" fajl koji ne bi smeo da ulazi u "zaštićene" zone, odnosno foldere, tako da jedan korisnik praktično ima mogućnost da pristupi i "tudjim" slikama, ali to za ovu vrstu projekta nije ni značajno jer privatnost ovih slika nije bitna
+ >  - Kompletan backend prati ECMA 6 JavaScript nomenklaturu
  ----------
 
 
 ### Detalji o frontend-u:
 
- > Frontend out je radjen po principu "apsolutne" responsive-nosti. Kako po širini ekrana, tako i po visini - header je uvek "gore", footer je uvek na dnu, sadržaj je uvek centriran na sredini bez obzira na širinu i visinu ekrana. Iako nisam radio dizajn jer nisam "umetnička duša" - kao što se da videti iz priloženog, frontend zadovoljava principe praćenja "duplog" dizajna. Gde je jedan dizajn za "veće" uredjaje/ekrane, a drugi za one manje - do 480px. Ispod 480px kompletan sadžaj se proporcionalno smanjuje. To je ostvareno sa par SASS funkcija, gde se "referentna" veličina vezuje za REM veličinu, i jednim "media" uslovom namenjenim za to.
- > EJS - Iako nazivno backend?, služi i kao odličan organizator delova dokumenta.
- > HTML5 - korišteni su "semantic" tagovi i input type-ovi novijeg datuma.
- > CSS3 - korištene su trazicije radi UI/UX, delimično je praćena i BEM nomenklatura tamo gde je imalo smisla - nije bilo potrebe za potpunom primenom jer se CSS oslanja na nestovanje u "glavne" kontejnere u SASS-u, a lično smatram da "preterivanje" sa BEM nomenklaturom dovodi do jako "prljavog" html-a
- > SASS - moćno sredstvo za strukturiranje CSS fajlova u razvoju -... korišćen,... nemam komentar
- > Razvojni deo frontend-a je smešten u "FE-Development" folder, odakle se fajlovi kompajliraju/prefiksuju/minifikuju u public folder - uz pomoć gulp.watch taskova
+ >  - Frontend out je radjen po principu "apsolutne" responsive-nosti. Kako po širini ekrana, tako i po visini - header je uvek "gore", footer je uvek na dnu, sadržaj je uvek centriran na sredini bez obzira na širinu i visinu ekrana. Iako nisam radio dizajn jer nisam "umetnička duša" - kao što se da videti iz priloženog, frontend zadovoljava principe praćenja "duplog" dizajna. Gde je jedan dizajn za "veće" uredjaje/ekrane, a drugi za one manje - do 480px. Ispod 480px kompletan sadžaj se proporcionalno smanjuje. To je ostvareno sa par SASS funkcija, gde se "referentna" veličina vezuje za REM veličinu, i jednim "media" uslovom namenjenim za to.
+ >  - EJS - Iako nazivno backend?, služi i kao odličan organizator delova dokumenta.
+ >  - HTML5 - korišteni su "semantic" tagovi i input type-ovi novijeg datuma.
+ >  - CSS3 - korištene su trazicije radi UI/UX, delimično je praćena i BEM nomenklatura tamo gde je imalo smisla - nije bilo potrebe za potpunom primenom jer se CSS oslanja na nestovanje u "glavne" kontejnere u SASS-u, a lično smatram da "preterivanje" sa BEM nomenklaturom dovodi do jako "prljavog" html-a
+ >  - SASS - moćno sredstvo za strukturiranje CSS fajlova u razvoju -... korišćen,... nemam komentar
+ >  - Razvojni deo frontend-a je smešten u "FE-Development" folder, odakle se fajlovi kompajliraju/prefiksuju/minifikuju u public folder - uz pomoć gulp.watch taskova
  ----------
 
 
@@ -60,6 +60,6 @@
 ### Korišćeni alati i software-i:
 
  >
- ----------
+
 
 
