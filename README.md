@@ -30,7 +30,11 @@
 
 ### Detalji o backend-u:
 
- >
+ > Backend-om upravlja Node.js/Express sa "ejs view-engine-om" na jednom procesu i mongoDB -na serveru, na drugom procesu. Tokom developmenta isti princip je sledjen - node.js i lokalni mongoDB. Sam proces spajanja slika je kroz gulp modul koji node koristi interno i aktivno. Od modula karakterističnih za projekat tu su još i "del", "fs", "gulp", "gulp.spritesmith" i "merge-stream", pored uobičajenih: "express", "cookie-parser", "body-parser", "express-fileupload", "path"....
+ > Smatrao sam za potrebnim da istaknem važnost logovanja, te sam stoga za taj error odvojio posebnu stranicu koja "viče" na ovu grešku
+ > Greške koje bi prekinule proces - "srušile" sajt su lokalizovane na log na server-side i ignorisane/izbegnute - greške modula, greške operacija sa bazom,...
+ > Za uobičajene greške sam izdvojio stanicu koja se renderuje i šalje stilizovana na frontend - 404, bad extension,...
+ > Najveći problem na koji sam naišao jeste korišćenje pojedinih modula koji rade u sopstvenom "ekosistemu" - promisi često ne završavaju callback-om iako izvrše zadani zadatak, a negde u modulu ostaju informacije o "nedovršenom" poslu, tako da prilikom narednog poziva potencijalno "ruše" sajt. Ovo je karakteristično za async-sync funkcije unutar async okruženja. Rešenje sam našao u try/catch metodi i logovanjem greške na server, čime se resetuje status promisa pa je funkcija ponovo spremna za "upotrebu"
  ----------
 
 
