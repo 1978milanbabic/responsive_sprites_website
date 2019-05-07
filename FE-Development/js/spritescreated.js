@@ -52,8 +52,10 @@
 
                 var _tab = "";      // &#9;
                 var _nl = "";       // \n
+                var $_tab = "&#9;";
+                var $_nl = "\n";
 
-                imgVar.append('var ' + var_spritename + ' = {' + _nl);
+                // imgVar.append('var ' + var_spritename + ' = {' + _nl);
                 imgVar.append('' + _tab + 'cssclass: "' + cssclass + '",' + _nl);
                 imgVar.append('' + _tab + 'img_source: "' + img_source + '",' + _nl);
 
@@ -160,16 +162,17 @@
 
                 imgVar.append('' + _tab + '}' + comm + '' + _nl);
 
-                imgVar.append('};');
+                imgVar.append('}');
 
                 //imgVar created!
                 imgVar = imgVar.join("");
 
                 //insert imgVar into framework
+                var fWork = "<script>" + $_nl + "/**" + $_nl + "* Responsive Sprites Framework" + $_nl + "* Copyright 2019 Milan Babic https://www.linkedin.com/in/milanbabic1978/" + $_nl + "* Licensed under: SEE LICENSE IN https://github.com/1978milanbabic/responsive_sprites_framework/blob/master/LICENSE" + $_nl + "*/" + $_nl + $_nl + '!function(t){function e(t){var v=t.cssclass,w=t.img_source,y=t.total_width,E=t.total_height,C=t.imgs,b=[];this.create=function(){for(var t in C){var e=v+"-"+t,i=document.getElementsByClassName(e);if(i&&0<i.length)for(var n=0;n<i.length;n++){i[n].style.display="inline-block";var o,s,a=i[n].offsetWidth;s=C[t].width,C[t].height,a&&0<a?o=a:(o=s,i[n].style.width=o+"px");var l=C[t].width,d=C[t].height,h=C[t].x,c=C[t].y,r=d/l*100,g=y/l*100,m=h/y*100,p=c/E*100,f=document.createElement("span");f.style.cssText="display: block; position: relative; overflow: hidden; width: 100%; height: 0; padding-bottom: "+r+"%",i[n].appendChild(f);var u=document.createElement("img");u.src=w,u.alt="",u.style.cssText="position: absolute; top: 0; left: 0; width: "+g+"%; height: auto; transform: translate(-"+m+"%, -"+p+"%); ",f.appendChild(u)}else b.push(e)}0<b.length&&console.log("UNUSED PICS: .",b)}}t.addEventListener("DOMContentLoaded",function(){new e({' + imgVar + ').create()},!1)}(document);' + $_nl + '</script>';
 
 
                 //append prepared framework to textarea
-                cont.append(imgVar);
+                cont.text(fWork);
 
 
                 //delete cookie data
