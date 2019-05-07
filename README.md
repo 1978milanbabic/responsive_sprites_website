@@ -42,11 +42,14 @@
 
 ### Detalji o frontend-u:
 
- >  - Frontend out je radjen po principu "apsolutne" responsive-nosti. Kako po širini ekrana, tako i po visini - header je uvek "gore", footer je uvek na dnu, sadržaj je uvek centriran na sredini bez obzira na širinu i visinu ekrana. Iako nisam radio dizajn jer nisam "umetnička duša" - kao što se da videti iz priloženog, frontend zadovoljava principe praćenja "duplog" dizajna. Gde je jedan dizajn za "veće" uredjaje/ekrane, a drugi za one manje - do 480px. Ispod 480px kompletan sadžaj se proporcionalno smanjuje. To je ostvareno sa par SASS funkcija, gde se "referentna" veličina vezuje za REM veličinu, i jednim "media" uslovom namenjenim za to.
- >  - EJS - Iako nazivno backend?, služi i kao odličan organizator delova dokumenta.
- >  - HTML5 - korišteni su "semantic" tagovi i input type-ovi novijeg datuma.
+ >  - Frontend out je radjen po principu "apsolutne" responsive-nosti. Kako po širini ekrana, tako i po visini - header je uvek "gore", footer je uvek na dnu, sadržaj je uvek centriran na sredini bez obzira na širinu i visinu ekrana. Iako nisam radio dizajn jer nisam "umetnička duša" - kao što se da videti iz priloženog, frontend zadovoljava principe praćenja "duplog" dizajna. Gde je jedan dizajn za "veće" uredjaje/ekrane, a drugi za one manje - do 480px. Ispod 480px kompletan sadžaj se proporcionalno smanjuje. To je ostvareno sa par SASS funkcija, gde se "referentna" veličina vezuje za REM veličinu, i jednim "media" uslovom namenjenim za to
+ >  - EJS - Iako nazivno backend?, služi i kao odličan organizator delova dokumenta
+ >  - HTML5 - korišteni su "semantic" tagovi i input type-ovi novijeg datuma
  >  - CSS3 - korištene su trazicije radi UI/UX, delimično je praćena i BEM nomenklatura tamo gde je imalo smisla - nije bilo potrebe za potpunom primenom jer se CSS oslanja na nestovanje u "glavne" kontejnere u SASS-u, a lično smatram da "preterivanje" sa BEM nomenklaturom dovodi do jako "prljavog" html-a
  >  - SASS - moćno sredstvo za strukturiranje CSS fajlova u razvoju -... korišćen,... nemam komentar
+ >  - JS - Kompletan FE JavaScript striktno prati ECMA 5 nomenklaturu - zbog kompatibilnosti sa browserima. Najveći deo nominacija promenljivih i funkcija su lokalizovani unutar samoizvršujućih funkcija da se globalni scope ne bi "zatrovao" velikim brojem nominacija. Samo par promenljivih i par funkcija je globalizovano na window scope jer se koriste u više skripti istovremeno.
+ >  - Sem Jquery-a, nikakav framework niti library nije korišćen. Štaviše, izbegnuto je korišćenje i nedovoljno cross-browser uskladjenih css3 veličina - poput Flex-a ili Grid-a.
+ >  - Delovi JS-a i CSS-a koji se učitavaju na svim stranicama su smešteni respektivno u main.js i main.css da bi se "samo jednom učitali", odnosno "skinuli" sa sajta na lokal. Svaki naredni request browser učitava iz keša, tako da je smanjena količina koda za slanje na FE.
  >  - Razvojni deo frontend-a je smešten u "FE-Development" folder, odakle se fajlovi kompajliraju/prefiksuju/minifikuju u public folder - uz pomoć gulp.watch taskova
  ----------
 
