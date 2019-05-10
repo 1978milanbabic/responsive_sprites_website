@@ -17,6 +17,12 @@
         margin-top: rem(45);
     }
 
+    .logs-table-cont {
+        width: 100%;
+        height: rem(500);
+        overflow-y: auto;
+    }
+
     .loggstable {
         width: 100%;
 
@@ -37,8 +43,25 @@
     .unique {
         font-style: italic;
         font-weight: 700;
-        padding: rem(15) 0;
+        padding-top: rem(15);
         font-size: rem(22);
+    }
+
+    .users-table-cont {
+        width: 100%;
+        height: rem(500);
+        overflow-y: auto;
+        margin-bottom: rem(45);
+    }
+
+    .users-table {
+        width: 100%;
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: rem(3) rem(5);
+        }
+
     }
 
 }//admin-page

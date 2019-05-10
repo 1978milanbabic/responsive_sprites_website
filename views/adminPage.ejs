@@ -6,34 +6,39 @@
 
     <h2>Loggs:</h2>
 
-    <table class="loggstable">
-        <tr>
-            <th>IP</th>
-            <th>UserName</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Action</th>
-        </tr>
+    <div class="logs-table-cont">
+        <table class="loggstable">
+            <tr>
+                <th>IP</th>
+                <th>UserName</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
 
-        <% for (let el = loggsData.length - 1; el >= 0; el--) {
-            let thisOne = loggsData[el];
-            let hours = thisOne.hour > 9 ? thisOne.hour : "0" + thisOne.hour;
-            let mins = thisOne.min > 9 ? thisOne.min : "0" + thisOne.min;
-            let secs = thisOne.sec > 9 ? thisOne.sec : "0" + thisOne.sec;
-            let ip = thisOne.ip.length > 7 ? thisOne.ip.slice(7) : thisOne.ip;
-            %>
-        <tr class="<%= thisOne.priority %>">
-            <td><%= ip %></td>
-            <td><%= thisOne.username %></td>
-            <td><%= thisOne.day + "." + thisOne.month + "." + thisOne.year + "." %></td>
-            <td><%= hours + ":" + mins + ":" + secs %></td>
-            <td><%= thisOne.action %></td>
-        </tr>
-        <%}; %>
+            <% for (let el = loggsData.length - 1; el >= 0; el--) {
+                let thisOne = loggsData[el];
+                let hours = thisOne.hour > 9 ? thisOne.hour : "0" + thisOne.hour;
+                let mins = thisOne.min > 9 ? thisOne.min : "0" + thisOne.min;
+                let secs = thisOne.sec > 9 ? thisOne.sec : "0" + thisOne.sec;
+                let ip = thisOne.ip.length > 7 ? thisOne.ip.slice(7) : thisOne.ip;
+                %>
+            <tr class="<%= thisOne.priority %>">
+                <td><%= ip %></td>
+                <td><%= thisOne.username %></td>
+                <td><%= thisOne.day + "." + thisOne.month + "." + thisOne.year + "." %></td>
+                <td><%= hours + ":" + mins + ":" + secs %></td>
+                <td><%= thisOne.action %></td>
+            </tr>
+            <%}; %>
 
-    </table>
+        </table>
+    </div>
+
+    <%//set unique visitors for each day here!%>
 
     <%
+        //total unique visitors
         let allUsers = [];
         loggsData.forEach((el, i)=>{
             allUsers.push(el.ip);
@@ -41,15 +46,34 @@
         let uniqueUsers = new Set([ ... allUsers ]);
     %>
     <p class="unique">
-        Unique users: <%= uniqueUsers.size %>
+        Unique visitors: <%= uniqueUsers.size %>
     </p>
 
+
     <h2>Users:</h2>
-    <% usersData.forEach(el => {
-        let log;
-        %>
-        <%= el %><br>
-    <%}); %>
+
+    <div class="users-table-cont">
+        <table class="users-table">
+            <tr>
+                <th>active</th>
+                <th>UserName</th>
+                <th>password</th>
+                <th>conf-link</th>
+            </tr>
+            <%
+            usersData.forEach(el => {
+            %>
+            <tr>
+                <td><%= el.active %></td>
+                <td><%= el.username %></td>
+                <td><%= el.password %></td>
+                <td><%= el.confirmationData %></td>
+            </tr>
+            <%
+            });
+            %>
+        </table>
+    </div>
 
 </div>
 
