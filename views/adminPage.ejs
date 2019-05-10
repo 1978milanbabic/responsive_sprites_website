@@ -23,7 +23,7 @@
             let ip = thisOne.ip.length > 7 ? thisOne.ip.slice(7) : thisOne.ip;
             %>
         <tr class="<%= thisOne.priority %>">
-            <td><%= thisOne.ip %></td>
+            <td><%= ip %></td>
             <td><%= thisOne.username %></td>
             <td><%= thisOne.day + "." + thisOne.month + "." + thisOne.year + "." %></td>
             <td><%= hours + ":" + mins + ":" + secs %></td>
