@@ -17,6 +17,7 @@ const create = require('./routes/createsprites');
 const done = require('./routes/spritescreated');
 const wronglog = require('./routes/errlogin');
 const confAcc = require('./routes/confacc');
+const examples = require('./routes/examples');
 //virtual routes/request controlers
 const signup = require('./routes/signup');
 const signin = require('./routes/signin');
@@ -48,6 +49,7 @@ app.use('/createsprites', create);
 app.use('/spritescreated', done);
 app.use('/errlogin', wronglog);
 app.use('/confirm', confAcc);
+app.use('/examples', examples);
 //virtual routes definitions
 app.use("/mail", signup);
 app.use("/login", signin);
