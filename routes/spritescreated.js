@@ -10,8 +10,9 @@ const getUser = request => request.cookies.user;
 
 router.get('/', (req, res, next) => {
     //logg
-    let additionalLoggInfo = ' - Created Sprites (visits page)';
-    Logger((req.cookies.user || 'Unsigned user') + additionalLoggInfo);
+    let ip = req.connection.remoteAddress || "not detected";
+    let uname = req.cookies.user || "Not logged";
+    Logger(ip, uname, 'Created Sprites (visits page)');
 
     //user loged in
     let user = getUser(req);

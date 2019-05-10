@@ -14,8 +14,10 @@ const renderPage = response => response.render('confirmacc', {
 
 
 router.get('/:data', (req, res, next) => {
-    //log
-    Logger('Account verification vissited');
+    //logg
+    let ip = req.connection.remoteAddress || "not detected";
+    let uname = req.cookies.user || "Not logged";
+    Logger(ip, uname, 'Account confirmation', 'Meddium');
 
     //request params
     let reqData = req.params.data;

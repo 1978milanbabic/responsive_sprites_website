@@ -16,8 +16,9 @@ const getUser = request => request.cookies.user;
 /* DISPLAY CREATESPRITES PAGE. */
 router.get('/', (req, res, next) => {
     //logg
-    let additionalLoggInfo = ' - visits Create page';
-    Logger((req.cookies.user || 'Unsigned user') + additionalLoggInfo);
+    let ip = req.connection.remoteAddress || "not detected";
+    let uname = req.cookies.user || "Not logged";
+    Logger(ip, uname, 'Visits Create Page');
 
     //user loged in
     let user = getUser(req);

@@ -6,7 +6,9 @@ const Logger = require('../logger/logger');
 /* Wrong login page */
 router.get('/', (req, res, next) => {
     //logg
-    req.cookies.user ? Logger(req.cookies.user + ' - illegal visit to ErrLogin page!!!') : Logger('Unsigned user - redirected to ErrLogin');
+    let ip = req.connection.remoteAddress || "not detected";
+    let uname = req.cookies.user || "Not logged";
+    Logger(ip, uname, 'Page - errorLoging ');
 
     res.render('errlogin', {
         title: 'Please Login First',

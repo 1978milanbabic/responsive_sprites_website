@@ -6,8 +6,9 @@ const Logger = require('../logger/logger');
 /* Home page */
 router.get('/', (req, res, next) => {
     //logg
-    let additionalLoggInfo = ' - visits Home page';
-    Logger((req.cookies.user || 'Unsigned user') + additionalLoggInfo);
+    let ip = req.connection.remoteAddress || "not detected";
+    let uname = req.cookies.user || "Not logged";
+    Logger(ip, uname, 'Visits Home Page');
 
     res.render('home', {
         title: 'Home',
