@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 //db model
 const User = require('../models/users');
+//logg
+const Logger = require('../logger/logger');
 
 //show TY for confirming acc page
 const renderPage = response => response.render('confirmacc', {
@@ -12,6 +14,9 @@ const renderPage = response => response.render('confirmacc', {
 
 
 router.get('/:data', (req, res, next) => {
+    //log
+    Logger('Account verification vissited');
+
     //request params
     let reqData = req.params.data;
 

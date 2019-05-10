@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const del = require('del');
+//logg
+const Logger = require('../logger/logger');
 
 
 const getUser = request => request.cookies.user;
 
 
 router.get('/', (req, res, next) => {
+    //logg
+    let additionalLoggInfo = ' - Created Sprites (visits page)';
+    Logger((req.cookies.user || 'Unsigned user') + additionalLoggInfo);
+
     //user loged in
     let user = getUser(req);
     let uploadPath = "./public/uploads/" + user + "/uploads/**/*";

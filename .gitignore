@@ -3,3 +3,4 @@ package-lock.json
 .vscode/
 public/uploads/
 secrets/
+loggs/

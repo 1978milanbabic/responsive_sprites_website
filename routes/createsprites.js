@@ -7,12 +7,18 @@ const fs = require('fs');
 const gulp = require('gulp');
 const spritesmith = require('gulp.spritesmith');
 const merge = require('merge-stream');
+//logg
+const Logger = require('../logger/logger');
 
 const getUser = request => request.cookies.user;
 
 
 /* DISPLAY CREATESPRITES PAGE. */
 router.get('/', (req, res, next) => {
+    //logg
+    let additionalLoggInfo = ' - visits Create page';
+    Logger((req.cookies.user || 'Unsigned user') + additionalLoggInfo);
+
     //user loged in
     let user = getUser(req);
     let uploadPath = "./public/uploads/" + user + "/uploads/**/*";
