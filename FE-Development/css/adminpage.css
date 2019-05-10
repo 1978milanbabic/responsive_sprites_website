@@ -31,4 +31,11 @@
 .admin-page .loggstable tr.Meddium td {
   background-color: rgba(229, 255, 0, 0.329);
 }
+
+.admin-page .unique {
+  font-style: italic;
+  font-weight: 700;
+  padding: 0.9375rem 0;
+  font-size: 1.375rem;
+}
 /*# sourceMappingURL=adminpage.css.map */

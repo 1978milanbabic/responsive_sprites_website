@@ -33,6 +33,16 @@
 
     </table>
 
+    <%
+        let allUsers = [];
+        loggsData.forEach((el, i)=>{
+            allUsers.push(el.ip);
+        });
+        let uniqueUsers = new Set([ ... allUsers ]);
+    %>
+    <p class="unique">
+        Unique users: <%= uniqueUsers.size %>
+    </p>
 
     <h2>Users:</h2>
     <% usersData.forEach(el => {
