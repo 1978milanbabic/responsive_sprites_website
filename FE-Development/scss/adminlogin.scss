@@ -1,0 +1,22 @@
+@import 'variables/basic-vars';
+@import 'variables/colors';
+
+.admin-login {
+    width: 100%;
+    color: $dark;
+    text-align: center;
+
+    h1 {
+        font-size: rem(36);
+        padding-bottom: rem(45);
+    }
+
+    input {
+        width: 80%;
+        max-width: 350px;
+        font-size: rem(22);
+        padding: rem(5) rem(15);
+        margin-bottom: rem(70);
+    }
+
+}//admin-login

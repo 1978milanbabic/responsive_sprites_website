@@ -1,0 +1,19 @@
+.admin-login {
+  width: 100%;
+  color: #333;
+  text-align: center;
+}
+
+.admin-login h1 {
+  font-size: 2.25rem;
+  padding-bottom: 2.8125rem;
+}
+
+.admin-login input {
+  width: 80%;
+  max-width: 350px;
+  font-size: 1.375rem;
+  padding: 0.3125rem 0.9375rem;
+  margin-bottom: 4.375rem;
+}
+/*# sourceMappingURL=adminlogin.css.map */

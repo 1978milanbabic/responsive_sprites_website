@@ -4,14 +4,35 @@
 
     <h1>Welcome Admin!</h1>
 
-    <h2>Loggs</h2>
-    <% loggsData.forEach(el => {
-        let log;
-        %>
-        <%= el %><br>
-    <%}); %>
+    <h2>Loggs:</h2>
 
-    <h2>Users</h2>
+    <table class="loggstable">
+        <tr>
+            <th>IP</th>
+            <th>UserName</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+        </tr>
+
+        <% loggsData.forEach(el => {
+            let hours = el.hour > 9 ? el.hour : "0" + el.hour;
+            let mins = el.min > 9 ? el.min : "0" + el.min;
+            let secs = el.sec > 9 ? el.sec : "0" + el.sec;
+            %>
+        <tr class="<%= el.priority %>">
+            <td><%= el.ip %></td>
+            <td><%= el.username %></td>
+            <td><%= el.day + "." + el.month + "." + el.year + "." %></td>
+            <td><%= hours + ":" + mins + ":" + secs %></td>
+            <td><%= el.action %></td>
+        </tr>
+        <%}); %>
+
+    </table>
+
+
+    <h2>Users:</h2>
     <% usersData.forEach(el => {
         let log;
         %>

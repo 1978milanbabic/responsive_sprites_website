@@ -12,7 +12,7 @@ const Logg = require('../models/loggs');
 router.get('/', (req, res, next) => {
     res.render('adminLogin', {
         title: 'Login as Admin',
-        css: ['main.css'],
+        css: ['main.css', 'adminlogin.css'],
         js: ["main.js"]
     });
 });
@@ -23,10 +23,6 @@ router.post('/', (req, res, next) => {
     let adminPass = secrets.adminPass;
     let pass = req.body.password;
     let usersData, loggsData;
-
-
-
-
 
     if (pass !== adminPass) {
         let ip = req.connection.remoteAddress || "not detected";
@@ -44,7 +40,7 @@ router.post('/', (req, res, next) => {
 
                         res.render('adminPage', {
                             title: 'Welcome Admin',
-                            css: ['main.css'],
+                            css: ['main.css', 'adminpage.css'],
                             js: ["main.js"],
                             loggsData,
                             usersData

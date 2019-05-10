@@ -1,0 +1,32 @@
+@import 'variables/basic-vars';
+@import 'variables/colors';
+
+.admin-page {
+    width: 100%;
+    color: $dark;
+
+    h1 {
+        font-size: rem(36);
+        text-align: center;
+    }
+
+    h2 {
+        font-size: rem(24);
+        padding-bottom: rem(15);
+        margin-top: rem(45);
+    }
+
+    .loggstable {
+        width: 100%;
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: rem(3) rem(5);
+        }
+
+        td {
+
+        }
+    }
+
+}//admin-page
