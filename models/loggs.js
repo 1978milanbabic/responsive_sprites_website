@@ -34,6 +34,9 @@ const LogSchema = new Schema({
     priority: {
         type: String,
         default: 'Low'
+    },
+    fullTime: {
+        type: String
     }
 });
 

@@ -11,6 +11,7 @@ const secrets = require('./secrets/secrets');
 
 //*********************** PAGE ROUTES CONTROLERS *********************
 //physical routes controlers
+const admin = require('./routes/admin');
 const home = require('./routes/home');
 const create = require('./routes/createsprites');
 const done = require('./routes/spritescreated');
@@ -41,6 +42,7 @@ mongoose.connect(secrets.mongoLink, { useNewUrlParser: true });
 
 //******************* PAGE ROUTES DEFINITIONS ******************
 //physical routes definitions
+app.use('/admin', admin);
 app.use('/', home);
 app.use('/createsprites', create);
 app.use('/spritescreated', done);

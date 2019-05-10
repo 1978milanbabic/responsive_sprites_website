@@ -1,0 +1,23 @@
+<%- include('./parts/head'); -%>
+
+<div class="inner admin-page">
+
+    <h1>Welcome Admin!</h1>
+
+    <h2>Loggs</h2>
+    <% loggsData.forEach(el => {
+        let log;
+        %>
+        <%= el %><br>
+    <%}); %>
+
+    <h2>Users</h2>
+    <% usersData.forEach(el => {
+        let log;
+        %>
+        <%= el %><br>
+    <%}); %>
+
+</div>
+
+<%- include('./parts/foot'); -%>

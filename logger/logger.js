@@ -2,7 +2,7 @@
 const Logg = require('../models/loggs');
 
 //logger
-const Logger = (ip, uname, action) => {
+const Logger = (ip, uname, action, priority) => {
 
     //date format
     let today = new Date();
@@ -23,8 +23,11 @@ const Logger = (ip, uname, action) => {
         return (hours + ":" + mins + ":" + secs);
     };
 
+    let fullTime = today.getTime();
+
     let logg = new Logg();
 
+    logg.fullTime = fullTime;
     logg.ip = ip;
     logg.day = day;
     logg.month = month;
@@ -34,6 +37,7 @@ const Logger = (ip, uname, action) => {
     logg.sec = secs;
     logg.username = uname;
     logg.action = action;
+    logg.priority = priority || "Low";
 
     logg.save()
         .then(() => {
