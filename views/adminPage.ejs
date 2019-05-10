@@ -15,19 +15,21 @@
             <th>Action</th>
         </tr>
 
-        <% loggsData.forEach(el => {
-            let hours = el.hour > 9 ? el.hour : "0" + el.hour;
-            let mins = el.min > 9 ? el.min : "0" + el.min;
-            let secs = el.sec > 9 ? el.sec : "0" + el.sec;
+        <% for (let el = loggsData.length - 1; el >= 0; el--) {
+            let thisOne = loggsData[el];
+            let hours = thisOne.hour > 9 ? thisOne.hour : "0" + thisOne.hour;
+            let mins = thisOne.min > 9 ? thisOne.min : "0" + thisOne.min;
+            let secs = thisOne.sec > 9 ? thisOne.sec : "0" + thisOne.sec;
+            let ip = thisOne.ip.length > 7 ? thisOne.ip.slice(7) : thisOne.ip;
             %>
-        <tr class="<%= el.priority %>">
-            <td><%= el.ip %></td>
-            <td><%= el.username %></td>
-            <td><%= el.day + "." + el.month + "." + el.year + "." %></td>
+        <tr class="<%= thisOne.priority %>">
+            <td><%= thisOne.ip %></td>
+            <td><%= thisOne.username %></td>
+            <td><%= thisOne.day + "." + thisOne.month + "." + thisOne.year + "." %></td>
             <td><%= hours + ":" + mins + ":" + secs %></td>
-            <td><%= el.action %></td>
+            <td><%= thisOne.action %></td>
         </tr>
-        <%}); %>
+        <%}; %>
 
     </table>
 
