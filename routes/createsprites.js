@@ -140,16 +140,6 @@ router.post('/create', (req, res, next) => {
         bgdColor = [0, 0, 0, 0];
     }
 
-    //development
-    console.log(
-        picType,
-        padding,
-        bgdColor,
-        imgName,
-        folder,
-        className
-    );
-
     let dataCookie = JSON.stringify({ picType, imgName, folder, className });
 
     //gulp task create

@@ -4,7 +4,8 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 //db model
 const User = require('../models/users');
-
+//private data (not versionized)
+const secrets = require('../secrets/secrets');
 
 //random character generator
 const makeid = (len) => {
@@ -18,13 +19,9 @@ const makeid = (len) => {
 }
 
 //mailing
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'responsive.sprites@gmail.com',
-        pass: 'respsprites1'
-    }
-});
+const transporter = nodemailer.createTransport(
+    { ...secrets.mailData }
+);
 
 
 

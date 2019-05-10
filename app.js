@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const upload = require('express-fileupload');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+//private data (not versionized)
+const secrets = require('./secrets/secrets');
 
 
 //*********************** PAGE ROUTES CONTROLERS *********************
@@ -17,8 +19,6 @@ const confAcc = require('./routes/confacc');
 //virtual routes/request controlers
 const signup = require('./routes/signup');
 const signin = require('./routes/signin');
-//development/testing route controler
-const emptyDB = require('./routes/emptydb');
 
 
 const app = express();
@@ -36,7 +36,7 @@ app.use(upload());
 app.use(cookieParser());
 
 //connect to mogoDB
-mongoose.connect('mongodb://localhost/userlist', { useNewUrlParser: true });
+mongoose.connect(secrets.mongoLink, { useNewUrlParser: true });
 
 
 //******************* PAGE ROUTES DEFINITIONS ******************
@@ -49,8 +49,6 @@ app.use('/confirm', confAcc);
 //virtual routes definitions
 app.use("/mail", signup);
 app.use("/login", signin);
-//development/testing definition
-app.use("/emptydatabase", emptyDB);
 
 
 // catch 404 and forward to error handler
