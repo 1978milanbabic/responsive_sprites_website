@@ -1,8 +1,10 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,KAAK,EAAE,IAAI;CAGd",
+    "mappings": "AAGA,AAAA,SAAS,CAAC;EACN,KAAK,EAAE,IAAI;CAGd",
     "sources": [
-        "../scss/examples.scss"
+        "../scss/examples.scss",
+        "../scss/variables/_basic-vars.scss",
+        "../scss/variables/_colors.scss"
     ],
     "names": [],
     "file": "examples.css"
