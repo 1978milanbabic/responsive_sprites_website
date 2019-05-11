@@ -22,8 +22,10 @@
                 let mins = thisOne.min > 9 ? thisOne.min : "0" + thisOne.min;
                 let secs = thisOne.sec > 9 ? thisOne.sec : "0" + thisOne.sec;
                 let ip = thisOne.ip.length > 7 ? thisOne.ip.slice(7) : thisOne.ip;
+                let myClass;
+                ip.indexOf("212.200.102.175") >= 0 ? myClass = "my" : myClass = false;
                 %>
-            <tr class="<%= thisOne.priority %>">
+            <tr class="<%= myClass || thisOne.priority %>">
                 <td><%= ip %></td>
                 <td><%= thisOne.username %></td>
                 <td><%= thisOne.day + "." + thisOne.month + "." + thisOne.year + "." %></td>

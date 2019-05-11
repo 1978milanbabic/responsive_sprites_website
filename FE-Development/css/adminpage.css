@@ -38,6 +38,10 @@
   background-color: rgba(229, 255, 0, 0.329);
 }
 
+.admin-page .loggstable tr.my td {
+  background-color: #ccc;
+}
+
 .admin-page .unique {
   font-style: italic;
   font-weight: 700;
