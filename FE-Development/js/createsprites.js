@@ -70,7 +70,6 @@
             });
         });
 
-
         //************ files upload ***************
         //first anull input val
         $("#uploadfiles").val("").change();
@@ -95,8 +94,13 @@
             var formData = new FormData();
 
             // add assoc key values, this will be posts values
-            formData.append("file", this.file, this.getName());
-            formData.append("upload_file", true);
+            try {
+                formData.append("file", that.file, that.getName());
+                formData.append("upload_file", true);
+            } catch (err) {
+                console.log(err);
+            }
+
 
             $.ajax({
                 type: "POST",
