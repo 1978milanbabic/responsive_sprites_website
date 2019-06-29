@@ -11,7 +11,7 @@
 
 ### The Goal:
 
- > The idea was to apply an existing my own well-tested framework [responsive_sprites_framework](http://responsive-sprites.com/) that controls sprites images in a way that makes them much more precise in positioning and showing them. This framework also has the ability to create responsive images from sprites images. The implementation of the images itself irresistibly resembles the popular font-awesome, and is therefore very simple and practical. The most complicated part of the implementation of existing framework was the creation of sprites images, as well as the object representing its data / data on individual thumbnails, and therefore a site was created that significantly facilitates and accelerates this process
+ > The idea was to apply an existing my own well-tested framework [responsive_sprites_framework](https://github.com/1978milanbabic/responsive_sprites_framework) that controls sprites images in a way that makes them much more precise in positioning and showing them. This framework also has the ability to create responsive images from sprites images. The implementation of the images itself irresistibly resembles the popular font-awesome, and is therefore very simple and practical. The most complicated part of the implementation of existing framework was the creation of sprites images, as well as the object representing its data / data on individual thumbnails, and therefore a site was created that significantly facilitates and accelerates this process
  ----------
 
 
