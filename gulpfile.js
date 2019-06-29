@@ -31,9 +31,17 @@ gulp.task('uglifyJS', () => {
         .pipe(gulp.dest('./public/javascripts/'));
 });
 
+//just copy
+gulp.task('copyJS', () => {
+    gulp.src([
+        './FE-Development/js/*.js'
+    ])
+        .pipe(gulp.dest('./public/javascripts/'));
+});
+
 //watch js for changes
 gulp.task('js:watch', () => {
-    gulp.watch('./FE-Development/js/**/*.js', ['uglifyJS']);
+    gulp.watch('./FE-Development/js/**/*.js', ['uglifyJS']);//, ['copyJS']
 });
 
 //**** IMG TASKS *****

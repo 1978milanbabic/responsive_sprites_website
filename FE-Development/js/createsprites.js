@@ -93,14 +93,7 @@
             var that = this;
             var formData = new FormData();
 
-            // add assoc key values, this will be posts values
-            try {
-                formData.append("file", that.file, that.getName());
-                formData.append("upload_file", true);
-            } catch (err) {
-                console.log(err);
-            }
-
+            formData.append("file", this.file);
 
             $.ajax({
                 type: "POST",
@@ -137,7 +130,7 @@
                         }
                     });
 
-                    console.log("Pic upload Complete!", picNmb, data);
+                    console.log("Pic upload Complete!", picNmb);
                     picNmb++;
                 },
                 error: function (error) {
@@ -179,7 +172,6 @@
             var files = $(this)[0].files;
             for (var key in files) {
                 var upload = new Upload(files[key]);
-
                 upload.doUpload();
             }
 

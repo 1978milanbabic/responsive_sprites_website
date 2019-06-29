@@ -63,9 +63,9 @@ router.post('/upload', (req, res, next) => {
         file.mv(uploadPath + filename, (err) => {
             if (err) {
                 console.log(err);
-                res.send(err);
+                res.send("error from server (/upload):", err);
             } else {
-                res.send("ok");
+                res.send("server (/upload) - status ok");
             }
         });
     } else {
