@@ -1,70 +1,69 @@
-# Node website (ejs) for responsive sprites framework (framework creation tool)
+# Framework creation tool
+# Node website (ejs) for responsive sprites framework
+
+*Security information has been transferred to a separate folder / module that is not versioned*
 
 
-### Readme file - će nadalje biti pisan na Srpskom jeziku (mimo uobičajene prakse) jer je ovaj repozitorijum namenjen isključivo za potrebe odbrane završnog projekta na "Code" kursu za JavaScript
-*UPDATE: sigurnosne informacije prebacene u poseban folder/modul koji nije verzionisan - projekat ostaje na github-u ako nekoga bude zanimao*
-
-
-## Link sajta: [http://responsive-sprites.com/](http://responsive-sprites.com/)
+## Site link: [http://responsive-sprites.com/](http://responsive-sprites.com/)
 
 ----------
 
 
-### Ideja:
+### The Goal:
 
- > Ideja je bila da se primeni već postojeći, dobro provereni framework koji kontroliše sprites images na način da ih značajno preciznije pozicionira i prikazuje. Ovaj framework takodje ima sposobnost da od sprites slika napravi responsive slike. Implementacija samih slika neodoljivo podseća na popularni font-awesome, te je stoga veoma jednostavna i praktična. Najkomplikovaniji deo implementacije je bio kreiranje sprites slika, kao i objekta koji reprezentuje njegove podatke/podatke o pojedinačnim sličicama, te je stoga i napravljen sajt koji značajno olakšava i ubrzava ovaj proces
+ > The idea was to apply an existing my own well-tested framework [responsive_sprites_framework](http://responsive-sprites.com/) that controls sprites images in a way that makes them much more precise in positioning and showing them. This framework also has the ability to create responsive images from sprites images. The implementation of the images itself irresistibly resembles the popular font-awesome, and is therefore very simple and practical. The most complicated part of the implementation of existing framework was the creation of sprites images, as well as the object representing its data / data on individual thumbnails, and therefore a site was created that significantly facilitates and accelerates this process
  ----------
 
 
-### O samom sajtu - funkcionalnost:
+### About the site - functionality:
 
- >  - Zbog upload-ovanja slika da ne bi došlo do "sukoba" višestrukih posetilaca, potrebno je za svakog posetioca napraviti nalog i odvojiti prostor, odnosno folder u koji će biti vršen upload slika, kao i snimanje kreirane sprites slike i json podataka o njoj
- >  - Registrovanje novih korisnika se vrši preko slanja registracionog linka na mail potencijalnog korisnika, koji on mora da potvrdi/poseti da bi aktivirao nalog
- >  - Novi registri se arhiviraju u mongoDB bazu podataka, gde su podaci: korisničko ime, izabrana šifra, link za aktivaciju naloga, kao i da li je nalog aktiviran
- >  - Sesije su izbegnute zbog niza tehničkih nedostataka, a umesto njih sesije kontrolišu kolačići koji se pri svakoj poseti i svakoj aktivnosti na bilo kojoj stranici produžuju za pola sata. Kolačići nose podatke o imenu korisnika, kao i trenutnoj aktivnosti na kreaciji sprites-a i detalje vezane za njega, te stoga služe i kao spona izmedju pojedinačnih stranica. Ključni kolačići sa podacima su kreirani na backend-u i salju se na frontend. Zbog bezbednosnog rizika svaka "nelegalna" akcija prouzrokovana korišćenjem podataka iz kolačića je pokrivena error handlerom.
- >  - Sprites image engine pokriva kreiranje png, kao i jpg fajlove uz gomilu opcija
- >  - Nakon uspešnog kreiranja sprites image-a, korisniku se nudi gotova implementacija frontend frameworka sa ubacenim podacima o slici koji se lako kopiraju i ubacuju u projekat, kao i download kreirane slike
- >  - Pomenuta stranica sadrži i sve pojedinačne sličice kako bi se lako i brzo copy/paste-primenilo u projekat
+ >  - Due to the uploading of images in order to avoid the "conflict" of multiple visitors, it is necessary for each visitor to create an account and separate the space, that is, the folder in which the upload will be made, as well as the capture of the created sprites of the picture and the information about it
+ >  - Registration of new users is done by sending a registration link to the mail of the potential user, which he / she has to confirm / visit to activate the account
+ >  - New registers are archived in the mongoDB database, where the data: user name, selected code, link to activate the account, and whether the account is activated
+ >  - Sessions are avoided due to a number of technical shortcomings, and instead of them, sessions are controlled by cookies that during each visit and every activity on any page extend for half an hour. Cookies contain information about the name of the user, as well as the current activity on creating sprites and details related to it, and therefore serve as a link between individual pages. Key data cookies are created on the backend and are sent to the frontend. Due to security risk, any "illegal" action caused by cookie data is covered by an error handler.
+ >  - Sprites image engine covers creating png, as well as jpg files with a bunch of options
+ >  - After successful creation of the sprites image, the user is offered a complete implementation of the frontend frameworks with inserted image data that is easily copied and loaded into the project, as well as downloaded created images
+ >  - The above page also contains all individual thumbnails in order to easily and quickly copy / paste-apply to the project
  ----------
 
 
-### Detalji o backend-u:
+### Frontend details:
 
- >  - Backend-om upravlja Node.js/Express sa "ejs view-engine-om" na jednom procesu i mongoDB lokalno/na istoj mašini, na drugom procesu. Tokom developmenta isti princip je sledjen - node.js i lokalni mongoDB. Sam proces spajanja slika je kroz gulp modul koji node koristi interno i aktivno. Od modula karakterističnih za projekat tu su još i "del", "fs", "gulp", "gulp.spritesmith" i "merge-stream", pored uobičajenih: "express", "cookie-parser", "body-parser", "express-fileupload", "path"....
- >  - Smatrao sam za potrebnim da istaknem važnost logovanja, te sam stoga za taj error odvojio posebnu stranicu koja "viče" na ovu grešku
- >  - Greške koje bi prekinule proces - "srušile" sajt su lokalizovane na log na server-side i ignorisane/izbegnute - greške modula, greške operacija sa bazom,...
- >  - Za uobičajene greške sam izdvojio stanicu koja se renderuje i šalje stilizovana na frontend - 404, bad extension,...
- >  - Najveći problem na koji sam naišao jeste korišćenje pojedinih modula koji rade u sopstvenom "ekosistemu" - promisi često ne završavaju callback-om iako izvrše zadani zadatak, a negde u modulu ostaju informacije o "nedovršenom" poslu, tako da prilikom narednog poziva potencijalno "ruše" sajt. Ovo je karakteristično za async-sync funkcije unutar async okruženja. Rešenje sam našao u try/catch metodi i logovanjem greške na server, čime se resetuje status promisa pa je funkcija ponovo spremna za "upotrebu"
- >  - Svi fajlovi kojima "barata" korisnik se smeštaju/su smešteni u "public" folder jer smatram da je sve što se "upload-uje" na server od strane korisnika na neki način "prljav" fajl koji ne bi smeo da ulazi u "zaštićene" zone, odnosno foldere, tako da jedan korisnik praktično ima mogućnost da pristupi i "tudjim" slikama, ali to za ovu vrstu projekta nije ni značajno jer privatnost ovih slika nije bitna
- >  - Kompletan backend prati ECMA 6 JavaScript nomenklaturu
+ >  - Frontend out is based on the principle of "absolute" responsiveness. As both the width of the screen and the height - header is always "up", the footer is always at the bottom, the content is always centered in the middle regardless of the width and height of the screen. Although I did not design because I'm not an "artistic soul" - as seen from the enclosed, the frontend meets the principles of tracking "double" design. Where one design is for "larger" devices / screens, the other for those smaller - up to 480px. Below 480px, the entire content is proportionally reduced. This is accomplished with a pair of SASS functions, where the "reference" size is associated with the REM size, and with one "media" condition for this purpose
+ >  - EJS - Although a nominal backend ?, it also serves as an excellent organizer of document parts
+ >  - HTML5 - Semantic tags and input types of the newer date were used
+ >  - CSS3 - css transitions were used for UI / UX, partly followed BEM nomenclature where it made sense - there was no need for complete application because CSS relies on nesting in the "main" containers in SASS, and I personally think that "exaggeration" with The BEM nomenclature leads to a very "dirty" html
+ >  - SASS - used - a powerful tool for structuring CSS files in development
+ >  - JS - Complete FE JavaScript strictly follows the ECMA 5 nomenclature - for compatibility with browsers. Most of the nominations of variables and functions are localized within self-executing functions so that the global scope does not "burst" with a large number of nominations. Only a few variables and a couple of functions are globalized to the window scope because they are used in multiple scripts at the same time.
+ >  - Apart from Jquery, no framework or library was used. Moreover, it is avoided using and insufficiently cross-browser-compliant css3 sizes - like Flex or Grid.
+ >  - Parts of JS and CSS that are loaded on all pages are located respectively in main.js and main.css in order to "load once" or "download" from site to site. Each subsequent browser request loads from cache, so the amount of code to send to FE is reduced.
+ >  - The development part of the frontend is located in the "FE-Development" folder, from where the files are compiled / prefixed / minifized into a public folder - with the help of gulp.watch tasks
  ----------
 
 
-### Detalji o frontend-u:
+### Backend details:
 
- >  - Frontend out je radjen po principu "apsolutne" responsive-nosti. Kako po širini ekrana, tako i po visini - header je uvek "gore", footer je uvek na dnu, sadržaj je uvek centriran na sredini bez obzira na širinu i visinu ekrana. Iako nisam radio dizajn jer nisam "umetnička duša" - kao što se da videti iz priloženog, frontend zadovoljava principe praćenja "duplog" dizajna. Gde je jedan dizajn za "veće" uredjaje/ekrane, a drugi za one manje - do 480px. Ispod 480px kompletan sadžaj se proporcionalno smanjuje. To je ostvareno sa par SASS funkcija, gde se "referentna" veličina vezuje za REM veličinu, i jednim "media" uslovom namenjenim za to
- >  - EJS - Iako nazivno backend?, služi i kao odličan organizator delova dokumenta
- >  - HTML5 - korišteni su "semantic" tagovi i input type-ovi novijeg datuma
- >  - CSS3 - korištene su trazicije radi UI/UX, delimično je praćena i BEM nomenklatura tamo gde je imalo smisla - nije bilo potrebe za potpunom primenom jer se CSS oslanja na nestovanje u "glavne" kontejnere u SASS-u, a lično smatram da "preterivanje" sa BEM nomenklaturom dovodi do jako "prljavog" html-a
- >  - SASS - moćno sredstvo za strukturiranje CSS fajlova u razvoju -... korišćen,... nemam komentar
- >  - JS - Kompletan FE JavaScript striktno prati ECMA 5 nomenklaturu - zbog kompatibilnosti sa browserima. Najveći deo nominacija promenljivih i funkcija su lokalizovani unutar samoizvršujućih funkcija da se globalni scope ne bi "zatrovao" velikim brojem nominacija. Samo par promenljivih i par funkcija je globalizovano na window scope jer se koriste u više skripti istovremeno.
- >  - Sem Jquery-a, nikakav framework niti library nije korišćen. Štaviše, izbegnuto je korišćenje i nedovoljno cross-browser uskladjenih css3 veličina - poput Flex-a ili Grid-a.
- >  - Delovi JS-a i CSS-a koji se učitavaju na svim stranicama su smešteni respektivno u main.js i main.css da bi se "samo jednom učitali", odnosno "skinuli" sa sajta na lokal. Svaki naredni request browser učitava iz keša, tako da je smanjena količina koda za slanje na FE.
- >  - Razvojni deo frontend-a je smešten u "FE-Development" folder, odakle se fajlovi kompajliraju/prefiksuju/minifikuju u public folder - uz pomoć gulp.watch taskova
+ >  - Backend manages Node.js / Express with "ejs view-engine" on one process and mongoDB locally / on the same machine, on another process. During development, the same principle is followed - node.js and local mongoDB. The process of connecting images is through a gulp module that nodes use internally and actively. From the module specific to the project, there are also "part", "fs", "gulp", "gulp.spritesmith" and "merge-stream", in addition to the usual: "express", "cookie-parser", "body-parser "," express-fileupload "," path "....
+ >  - I considered it necessary to emphasize the importance of logging, so I therefore set aside for this error a special page that "shouts" this error
+ >  - Errors that would break the process - "crash" the site are localized to log on server-side and ignored - module errors, database operation errors, ...
+ >  - For common mistakes, I have allocated a station that is rendered and sent out stylized on the frontend - 404, bad extension, ...
+ >  - The biggest problem I've encountered is the use of individual modules that work in my own "ecosystem" - promises often do not end with a callback, although they perform the default task, and somewhere in the module, information about the "unfinished" job remains, so that in the next call, " website. This is characteristic for async-sync functions within an async environment. I found the solution in the try / catch method and logging the error on the server, which resets the promo status so the function is ready for "use"
+ >  - All the files that the user requests are stored in the public folder, because I think that everything that is "uploaded" to the server by the user is in some way a "dirty" file that should not enter the "protected" "zones, or folders, so that one user practically has the ability to access" other "images, but this is not important for this type of project because the privacy of these images is not important
+ >  - The complete backend follows the ECMA 6 JavaScript nomenclature
  ----------
 
 
-### Detalji o implementaciji:
+### Implementation details:
 
- > - Sajt je smešten na realnom VPS hostingu, sa realnim domenom. Zakupcu hostinga je ponudjena samo "prazna ploča", tako da sam sve instalirao sam - od Ubuntu-a, preko Node-a do mongoDB-a ... i još ponekih alatkica...
- > - Pristup sajtu je obezbedjen preko SSH ključa, kao i upload sa gitHub-a preko drugog SSH ključa
+ > - The site is located on a "real" VPS hosting, with a real domain. Hosting lease was offered only "blank panel", so I installed everything myself - from Ubuntu, through Node to mongoDB ... and some other tools ...
+ > - Access to the site is provided via SSH key, as well as upload from gitHub via another SSH key
  ----------
 
 
-### Korišćeni alati i software-i:
+### Used tools and software:
 
- > - RAZVOJ: VsCode, Gulp, Sass, Chrome dev tools, mongod, node server, Mongo Management Studio, WinSCP, POstman, Photoshop
- > - IMPLEMENTACIJA: PuTTY, WinSCP, "Linux komande", npm PM2 runtime
+ > - DEVELOPMENT: VsCode, Gulp, Sass, Chrome dev tools, mongod, node server, Mongo Management Studio, WinSCP, POSTMAN, Photoshop
+ > - IMPLEMENTATION: PuTTY, WinSCP, "Linux commands", npm PM2 runtime
 
 
 
