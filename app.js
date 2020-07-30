@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 //private data (not versionized)
 const secrets = require('./secrets/secrets');
-
+// init next comp
 
 //*********************** PAGE ROUTES CONTROLERS *********************
 //physical routes controlers
